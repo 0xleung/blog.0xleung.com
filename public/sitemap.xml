@@ -1,0 +1,74 @@
+<?xml-stylesheet type="text/xsl" href="http://blog.jobinleung.me/sitemap.xsl"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  
+  <url>
+    <loc>http://blog.jobinleung.me/categories/</loc>
+    <lastmod>2022-03-03T15:51:20+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>http://blog.jobinleung.me/</loc>
+    <lastmod>2022-03-03T15:51:20+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>http://blog.jobinleung.me/tags/metamask/</loc>
+    <lastmod>2022-03-03T15:51:20+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>http://blog.jobinleung.me/post/</loc>
+    <lastmod>2022-03-03T15:51:20+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>http://blog.jobinleung.me/tags/reactnative/</loc>
+    <lastmod>2022-03-03T15:51:20+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>http://blog.jobinleung.me/tags/</loc>
+    <lastmod>2022-03-03T15:51:20+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>http://blog.jobinleung.me/tags/web3/</loc>
+    <lastmod>2022-03-03T15:51:20+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>http://blog.jobinleung.me/categories/web3/</loc>
+    <lastmod>2022-03-03T15:51:20+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>http://blog.jobinleung.me/post/mobile-app-connects-to-metamask-app-and-signs-via-deep-link/</loc>
+    <lastmod>2022-03-03T15:51:20+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>http://blog.jobinleung.me/post/hello/</loc>
+    <lastmod>2022-03-03T15:03:27+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+</urlset>

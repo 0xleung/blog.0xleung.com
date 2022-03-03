@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tags on Jobin Leung - Blog</title>
+    <link>http://blog.jobinleung.me/tags/</link>
+    <description>Recent content in Tags on Jobin Leung - Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Thu, 03 Mar 2022 15:51:20 +0800</lastBuildDate><atom:link href="http://blog.jobinleung.me/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>metamask</title>
+      <link>http://blog.jobinleung.me/tags/metamask/</link>
+      <pubDate>Thu, 03 Mar 2022 15:51:20 +0800</pubDate>
+      
+      <guid>http://blog.jobinleung.me/tags/metamask/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>reactnative</title>
+      <link>http://blog.jobinleung.me/tags/reactnative/</link>
+      <pubDate>Thu, 03 Mar 2022 15:51:20 +0800</pubDate>
+      
+      <guid>http://blog.jobinleung.me/tags/reactnative/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>web3</title>
+      <link>http://blog.jobinleung.me/tags/web3/</link>
+      <pubDate>Thu, 03 Mar 2022 15:51:20 +0800</pubDate>
+      
+      <guid>http://blog.jobinleung.me/tags/web3/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>
