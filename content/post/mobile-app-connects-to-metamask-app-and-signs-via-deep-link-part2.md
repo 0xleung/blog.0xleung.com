@@ -52,10 +52,9 @@ import {
 监听返回链接以及参数
 
 ```ts
-const onAppWokUp = ( event ) => {
+const onAppWokUp = (event: {url: string}) => {
     setInintUrl(event.url);
-    return event.remove();
-}
+};
 
 useEffect(() => {
     Linking.getInitialURL().then(url => {
@@ -64,6 +63,9 @@ useEffect(() => {
         }
     });
     Linking.addEventListener('url', onAppWokUp);
+    return () => {
+        Linking.removeEventListener('url', onAppWokUp);
+    };
 }, []);
 ```
 就是这么简单 我把app端的代码也放到GitHub感兴趣的大家可以去瞧一瞧!
