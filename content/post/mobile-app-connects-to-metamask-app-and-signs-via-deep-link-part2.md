@@ -68,6 +68,7 @@ useEffect(() => {
     };
 }, []);
 ```
+
 就是这么简单 我把app端的代码也放到GitHub感兴趣的大家可以去瞧一瞧!
 
 [https://github.com/JobinLeung/ConnectWithMetamaskDemo](https://github.com/JobinLeung/ConnectWithMetamaskDemo)
