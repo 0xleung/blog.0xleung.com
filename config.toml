@@ -64,9 +64,9 @@ copyright = ""            # default: author.name ↓        # 默认为下面配
   gitRepo = ""
 
   # site info (optional)                                  # 站点信息（可选，不需要的可以直接注释掉）
-  logoTitle = "Jobin Leung"        # default: the title value    # 默认值: 上面设置的title值
-  keywords = ["jobinleung", "web3", "nft", "typescript", "react"]
-  description = "Jobin Leung's blog, we talk about life, technology, web3, and everything in between."
+  logoTitle = "0XLΞung"        # default: the title value    # 默认值: 上面设置的title值
+  keywords = ["0xleung", "web3", "nft", "typescript", "react"]
+  description = "0XLΞung's blog, we talk about life, technology, web3, and everything in between."
 
   # paginate of archives, tags and categories             # 归档、标签、分类每页显示的文章数目，建议修改为一个较大的值
   archivePaginate = 50
@@ -189,11 +189,11 @@ copyright = ""            # default: author.name ↓        # 默认为下面配
   [params.social]                                         # 社交链接
     a-email = "mailto:jobinleung@gmail.com"
     # b-stack-overflow = "http://localhost:1313"
-    c-twitter = "https://twitter.com/JobinLeung"
+    c-twitter = "https://twitter.com/0xleung"
     # d-facebook = "http://localhost:1313"
     # e-linkedin = "http://localhost:1313"
     # f-google = "http://localhost:1313"
-    g-github = "https://github.com/JobinLeung"
+    g-github = "https://github.com/0xleung"
     # h-weibo = "http://localhost:1313"
     # i-zhihu = "http://localhost:1313"
     # j-douban = "http://localhost:1313"
