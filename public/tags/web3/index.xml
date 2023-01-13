@@ -6,7 +6,16 @@
     <description>Recent content in web3 on Jobin Leung - Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Thu, 03 Mar 2022 15:51:20 +0800</lastBuildDate><atom:link href="http://blog.jobinleung.me/tags/web3/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 04 Mar 2022 18:39:55 +0800</lastBuildDate><atom:link href="http://blog.jobinleung.me/tags/web3/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>使用universal link巧妙解决App端使用metamask App授权以及交互 (part 2)</title>
+      <link>http://blog.jobinleung.me/post/mobile-app-connects-to-metamask-app-and-signs-via-deep-link-part2/</link>
+      <pubDate>Fri, 04 Mar 2022 18:39:55 +0800</pubDate>
+      
+      <guid>http://blog.jobinleung.me/post/mobile-app-connects-to-metamask-app-and-signs-via-deep-link-part2/</guid>
+      <description>今天我们介绍一下app端的实现, 一直没写也是因为我觉得app端确实没啥可以写的. 它真的很简单. 我就基于RN + iOS一起回顾一下. 主要是两点.</description>
+    </item>
+    
     <item>
       <title>使用universal link巧妙解决App端使用metamask App授权以及交互 (part 1)</title>
       <link>http://blog.jobinleung.me/post/mobile-app-connects-to-metamask-app-and-signs-via-deep-link/</link>

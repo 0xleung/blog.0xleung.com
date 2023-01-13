@@ -6,11 +6,56 @@
     <description>Recent content in Tags on Jobin Leung - Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Thu, 03 Mar 2022 15:51:20 +0800</lastBuildDate><atom:link href="http://blog.jobinleung.me/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 13 Jan 2023 17:52:24 +0800</lastBuildDate><atom:link href="http://blog.jobinleung.me/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>npm</title>
+      <link>http://blog.jobinleung.me/tags/npm/</link>
+      <pubDate>Fri, 13 Jan 2023 17:52:24 +0800</pubDate>
+      
+      <guid>http://blog.jobinleung.me/tags/npm/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>react</title>
+      <link>http://blog.jobinleung.me/tags/react/</link>
+      <pubDate>Fri, 13 Jan 2023 17:52:24 +0800</pubDate>
+      
+      <guid>http://blog.jobinleung.me/tags/react/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>rust</title>
+      <link>http://blog.jobinleung.me/tags/rust/</link>
+      <pubDate>Fri, 13 Jan 2023 17:52:24 +0800</pubDate>
+      
+      <guid>http://blog.jobinleung.me/tags/rust/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>wasm</title>
+      <link>http://blog.jobinleung.me/tags/wasm/</link>
+      <pubDate>Fri, 13 Jan 2023 17:52:24 +0800</pubDate>
+      
+      <guid>http://blog.jobinleung.me/tags/wasm/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>WebAssembly</title>
+      <link>http://blog.jobinleung.me/tags/webassembly/</link>
+      <pubDate>Fri, 13 Jan 2023 17:52:24 +0800</pubDate>
+      
+      <guid>http://blog.jobinleung.me/tags/webassembly/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>metamask</title>
       <link>http://blog.jobinleung.me/tags/metamask/</link>
-      <pubDate>Thu, 03 Mar 2022 15:51:20 +0800</pubDate>
+      <pubDate>Fri, 04 Mar 2022 18:39:55 +0800</pubDate>
       
       <guid>http://blog.jobinleung.me/tags/metamask/</guid>
       <description></description>
@@ -19,7 +64,7 @@
     <item>
       <title>reactnative</title>
       <link>http://blog.jobinleung.me/tags/reactnative/</link>
-      <pubDate>Thu, 03 Mar 2022 15:51:20 +0800</pubDate>
+      <pubDate>Fri, 04 Mar 2022 18:39:55 +0800</pubDate>
       
       <guid>http://blog.jobinleung.me/tags/reactnative/</guid>
       <description></description>
@@ -28,7 +73,7 @@
     <item>
       <title>web3</title>
       <link>http://blog.jobinleung.me/tags/web3/</link>
-      <pubDate>Thu, 03 Mar 2022 15:51:20 +0800</pubDate>
+      <pubDate>Fri, 04 Mar 2022 18:39:55 +0800</pubDate>
       
       <guid>http://blog.jobinleung.me/tags/web3/</guid>
       <description></description>
