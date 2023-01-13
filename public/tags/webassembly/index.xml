@@ -8,7 +8,7 @@
     <language>en</language>
     <lastBuildDate>Fri, 13 Jan 2023 17:52:24 +0800</lastBuildDate><atom:link href="http://blog.jobinleung.me/tags/webassembly/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>How to Use Rust to Develop Wasm Library </title>
+      <title>怎样使用rust开发wasm库</title>
       <link>http://blog.jobinleung.me/post/how-to-use-rust-to-develop-wasm-library-/</link>
       <pubDate>Fri, 13 Jan 2023 17:52:24 +0800</pubDate>
       

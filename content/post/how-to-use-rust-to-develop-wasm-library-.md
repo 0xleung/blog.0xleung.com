@@ -1,5 +1,5 @@
 ---
-title: "How to Use Rust to Develop Wasm Library "
+title: "怎样使用rust开发wasm库"
 date: 2023-01-13T17:52:24+08:00
 draft: false
 tags: ["rust", "wasm", "react", "WebAssembly", "npm"]

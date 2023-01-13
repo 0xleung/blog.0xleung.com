@@ -9,13 +9,6 @@
   </url>
   
   <url>
-    <loc>http://blog.jobinleung.me/post/how-to-use-rust-to-develop-wasm-library-/</loc>
-    <lastmod>2023-01-13T17:52:24+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
     <loc>http://blog.jobinleung.me/</loc>
     <lastmod>2023-01-13T17:52:24+08:00</lastmod>
     <changefreq>weekly</changefreq>
@@ -73,6 +66,13 @@
   
   <url>
     <loc>http://blog.jobinleung.me/tags/webassembly/</loc>
+    <lastmod>2023-01-13T17:52:24+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>http://blog.jobinleung.me/post/how-to-use-rust-to-develop-wasm-library-/</loc>
     <lastmod>2023-01-13T17:52:24+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
