@@ -1,166 +1,253 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <title>怎样使用rust开发wasm库 - Jobin Leung - Blog</title>
-  <meta name="renderer" content="webkit" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
-
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
-
-<meta name="theme-color" content="#f8f5ec" />
-<meta name="msapplication-navbutton-color" content="#f8f5ec">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
-
-
-<meta name="author" content="Jobin Leung" /><meta name="description" content="记录一下使用rust为网站写一个wasm来运算接口签名库的关键步骤. 第一, 环境 除了rust cargo等rust开发必需品使用rust开发wa" /><meta name="keywords" content="0xleung, web3, nft, typescript, react" />
 
 
 
 
 
 
-<meta name="generator" content="Hugo 0.109.0 with theme even" />
-
-
-<link rel="canonical" href="http://blog.jobinleung.me/post/how-to-use-rust-to-develop-wasm-library-/" />
-<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-<link rel="manifest" href="/manifest.json">
-<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
 
 
 
-<link href="/sass/main.min.f92fd13721ddf72129410fd8250e73152cc6f2438082b6c0208dc24ee7c13fc4.css" rel="stylesheet">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
-<meta property="og:title" content="怎样使用rust开发wasm库" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html
+  class="not-ready text-sm lg:text-base"
+  style="--bg: #faf6f1"
+  lang="en"
+>
+  <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1, shrink-to-fit=no"
+  />
+
+  
+  <title>怎样使用rust开发wasm库 - Leung</title>
+
+  
+  <meta name="theme-color" />
+  
+  <meta name="description" content="记录一下使用rust为网站写一个wasm来运算接口签名库的关键步骤. 第一, 环境 除了rust cargo等rust开发必需品使用rust开发wa" />
+  <meta
+    name="author"
+    content="Jobin Leung"
+  />
+  
+
+  
+  
+  
+  
+  
+  
+  <link rel="preload stylesheet" as="style" href="http://blog.jobinleung.me/main.min.css" />
+
+  
+  <script
+    defer
+    src="http://blog.jobinleung.me/highlight.min.js"
+    onload="hljs.initHighlightingOnLoad();"
+  ></script>
+  
+
+  
+   
+  <link rel="preload" as="image" href="http://blog.jobinleung.me/theme.png" />
+
+  
+  
+  
+  
+
+  
+
+  
+  <link rel="icon" href="http://blog.jobinleung.me/favicon.ico" />
+  <link rel="apple-touch-icon" href="http://blog.jobinleung.me/apple-touch-icon.png" />
+
+  
+  <meta name="generator" content="Hugo 0.109.0">
+
+  
+  
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <meta property="og:title" content="怎样使用rust开发wasm库" />
 <meta property="og:description" content="记录一下使用rust为网站写一个wasm来运算接口签名库的关键步骤. 第一, 环境 除了rust cargo等rust开发必需品使用rust开发wa" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="http://blog.jobinleung.me/post/how-to-use-rust-to-develop-wasm-library-/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2023-01-13T17:52:24+08:00" />
 <meta property="article:modified_time" content="2023-01-13T17:52:24+08:00" />
-<meta itemprop="name" content="怎样使用rust开发wasm库">
+
+  
+  <meta itemprop="name" content="怎样使用rust开发wasm库">
 <meta itemprop="description" content="记录一下使用rust为网站写一个wasm来运算接口签名库的关键步骤. 第一, 环境 除了rust cargo等rust开发必需品使用rust开发wa"><meta itemprop="datePublished" content="2023-01-13T17:52:24+08:00" />
 <meta itemprop="dateModified" content="2023-01-13T17:52:24+08:00" />
 <meta itemprop="wordCount" content="1406">
-<meta itemprop="keywords" content="rust,wasm,react,WebAssembly,npm," /><meta name="twitter:card" content="summary"/>
+<meta itemprop="keywords" content="rust,wasm,react,WebAssembly,npm," />
+  
+  <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="怎样使用rust开发wasm库"/>
 <meta name="twitter:description" content="记录一下使用rust为网站写一个wasm来运算接口签名库的关键步骤. 第一, 环境 除了rust cargo等rust开发必需品使用rust开发wa"/>
 
-<!--[if lte IE 9]>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
-<![endif]-->
-
-<!--[if lt IE 9]>
-  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
-<![endif]-->
-
+  
+  
 </head>
-<body>
-  <div id="mobile-navbar" class="mobile-navbar">
-  <div class="mobile-header-logo">
-    <a href="/" class="logo">0XLΞung</a>
+
+  <body class="text-black duration-200 ease-out dark:text-white">
+    <header class="mx-auto flex h-[5rem] max-w-3xl px-8 lg:justify-center">
+  <div class="relative z-50 mr-auto flex items-center">
+    <a
+      class="-translate-x-[1px] -translate-y-0.5 text-3xl font-bold"
+      href="http://blog.jobinleung.me/"
+      >Leung</a
+    >
+    <a
+      class="btn-dark ml-6 h-6 w-6 shrink-0 cursor-pointer [background:url(./theme.png)_left_center/_auto_theme('spacing.6')_no-repeat] [transition:_background-position_0.4s_steps(5)] dark:[background-position:right]"
+    ></a>
   </div>
-  <div class="mobile-navbar-icon">
-    <span></span>
-    <span></span>
-    <span></span>
-  </div>
-</div>
-<nav id="mobile-menu" class="mobile-menu slideout-menu">
-  <ul class="mobile-menu-list">
-    <a href="/">
-        <li class="mobile-menu-item">Home</li>
-      </a><a href="https://www.jobinleung.me/">
-        <li class="mobile-menu-item">Profile</li>
-      </a><a href="/post/">
-        <li class="mobile-menu-item">Archives</li>
-      </a><a href="/tags/">
-        <li class="mobile-menu-item">Tags</li>
-      </a><a href="/categories/">
-        <li class="mobile-menu-item">Categories</li>
-      </a>
-  </ul>
+
+  <a
+    class="btn-menu relative z-50 -mr-8 flex h-[5rem] w-[5rem] shrink-0 cursor-pointer flex-col items-center justify-center gap-2.5 lg:hidden"
+  ></a>
 
   
-
-
-</nav>
-
-  <div class="container" id="mobile-panel">
-    <header id="header" class="header">
-        <div class="logo-wrapper">
-  <a href="/" class="logo">0XLΞung</a>
-</div>
-
-
-
-
-
-<nav class="site-navbar">
-  <ul id="menu" class="menu">
-    <li class="menu-item">
-        <a class="menu-item-link" href="/">Home</a>
-      </li><li class="menu-item">
-        <a class="menu-item-link" href="https://www.jobinleung.me/">Profile</a>
-      </li><li class="menu-item">
-        <a class="menu-item-link" href="/post/">Archives</a>
-      </li><li class="menu-item">
-        <a class="menu-item-link" href="/tags/">Tags</a>
-      </li><li class="menu-item">
-        <a class="menu-item-link" href="/categories/">Categories</a>
-      </li>
-  </ul>
-</nav>
-
-    </header>
-
-    <main id="main" class="main">
-      <div class="content-wrapper">
-        <div id="content" class="content">
-          <article class="post">
+  <script>
     
-    <header class="post-header">
-      <h1 class="post-title">怎样使用rust开发wasm库</h1>
+    const htmlClass = document.documentElement.classList;
+    setTimeout(() => {
+      htmlClass.remove('not-ready');
+    }, 10);
 
-      <div class="post-meta">
-        <span class="post-time"> 2023-01-13 </span>
-        <div class="post-category">
-            <a href="/categories/wasm/"> wasm </a>
-            </div>
-        
-      </div>
-    </header>
+    
+    const btnMenu = document.querySelector('.btn-menu');
+    btnMenu.addEventListener('click', () => {
+      htmlClass.toggle('open');
+    });
 
-    <div class="post-toc" id="post-toc">
-  <h2 class="post-toc-title">Contents</h2>
-  <div class="post-toc-content always-active">
-    <nav id="TableOfContents">
-  <ul>
-    <li>
-      <ul>
-        <li>
-          <ul>
-            <li><a href="#第一-环境">第一, 环境</a></li>
-            <li><a href="#第二-编码">第二, 编码</a></li>
-            <li><a href="#第三-使用">第三, 使用</a></li>
-          </ul>
-        </li>
-      </ul>
-    </li>
-  </ul>
-</nav>
+    
+    const metaTheme = document.querySelector('meta[name="theme-color"]');
+    const lightBg = `"#faf6f1"`.replace(/"/g, '');
+    const setDark = (isDark) => {
+      metaTheme.setAttribute('content', isDark ? '#000' : lightBg);
+      htmlClass[isDark ? 'add' : 'remove']('dark');
+      localStorage.setItem('dark', isDark);
+    };
+
+    
+    const darkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+    if (htmlClass.contains('dark')) {
+      setDark(true);
+    } else {
+      const darkVal = localStorage.getItem('dark');
+      setDark(darkVal ? darkVal === 'true' : darkScheme.matches);
+    }
+
+    
+    darkScheme.addEventListener('change', (event) => {
+      setDark(event.matches);
+    });
+
+    
+    const btnDark = document.querySelector('.btn-dark');
+    btnDark.addEventListener('click', () => {
+      setDark(localStorage.getItem('dark') !== 'true');
+    });
+  </script>
+
+  <div
+    class="nav-wrapper fixed inset-x-0 top-full z-40 flex h-full select-none flex-col justify-center pb-16 duration-200 dark:bg-black lg:static lg:h-auto lg:flex-row lg:!bg-transparent lg:pb-0 lg:transition-none"
+  >
+    
+    
+    <nav class="lg:ml-12 lg:flex lg:flex-row lg:items-center lg:space-x-6">
+      
+      <a
+        class="block text-center text-2xl leading-[5rem] lg:text-base lg:font-normal"
+        href="/"
+        >Home</a
+      >
+      
+      <a
+        class="block text-center text-2xl leading-[5rem] lg:text-base lg:font-normal"
+        href="https://www.jobinleung.me/"
+        >Profile</a
+      >
+      
+      <a
+        class="block text-center text-2xl leading-[5rem] lg:text-base lg:font-normal"
+        href="/post/"
+        >Archives</a
+      >
+      
+      <a
+        class="block text-center text-2xl leading-[5rem] lg:text-base lg:font-normal"
+        href="/tags/"
+        >Tags</a
+      >
+      
+      <a
+        class="block text-center text-2xl leading-[5rem] lg:text-base lg:font-normal"
+        href="/categories/"
+        >Categories</a
+      >
+      
+    </nav>
+    
+
+    
   </div>
-</div>
-    <div class="post-content">
-      <p>记录一下使用rust为网站写一个wasm来运算接口签名库的关键步骤.</p>
+</header>
+
+
+    <main
+      class="prose prose-neutral relative mx-auto min-h-[calc(100%-10rem)] max-w-3xl px-8 pt-20 pb-32 dark:prose-invert"
+    >
+      
+
+<article>
+  <header class="mb-20">
+    <h1 class="!my-0 pb-2.5">怎样使用rust开发wasm库</h1>
+
+    
+    <div class="text-sm opacity-60">
+      
+      <time>Jan 13, 2023</time>
+      
+      
+      <span class="mx-1">&middot;</span>
+      <span>Jobin Leung</span>
+      
+    </div>
+    
+  </header>
+
+  <section><p>记录一下使用rust为网站写一个wasm来运算接口签名库的关键步骤.</p>
 <h3 id="第一-环境">第一, 环境</h3>
 <p>除了rust cargo等rust开发必需品使用rust开发wasm还需要以下3点</p>
 <h4 id="1-wasm-pack">1. wasm-pack</h4>
@@ -432,103 +519,94 @@
 </div>
 </div><p>本次极简版rust开发wasm库到此结束, 后续会持续推出一些有用的rust wasm开发的实用库.</p>
 <p>最后对rust感兴趣的可以加我微信我们一起探讨, 还在不断学习中.</p>
+</section>
 
-    </div>
-
-    <div class="post-copyright">
-  <p class="copyright-item">
-    <span class="item-title">Author</span>
-    <span class="item-content">Jobin Leung</span>
-  </p>
-  <p class="copyright-item">
-    <span class="item-title">LastMod</span>
-    <span class="item-content">
-        2023-01-13
-        
-    </span>
-  </p>
   
-  <p class="copyright-item">
-    <span class="item-title">License</span>
-    <span class="item-content"><a rel="license noopener" href="https://en.wikipedia.org/wiki/Wikipedia:Text_of_Creative_Commons_Attribution-ShareAlike_3.0_Unported_License" target="_blank">Creative Commons Attribution-ShareAlike License</a></span>
-  </p>
-</div>
-<footer class="post-footer">
-      <div class="post-tags">
-          <a href="/tags/rust/">rust</a>
-          <a href="/tags/wasm/">wasm</a>
-          <a href="/tags/react/">react</a>
-          <a href="/tags/webassembly/">WebAssembly</a>
-          <a href="/tags/npm/">npm</a>
-          </div>
-      <nav class="post-nav">
-        
-        <a class="next" href="/post/mobile-app-connects-to-metamask-app-and-signs-via-deep-link-part2/">
-            <span class="next-text nav-default">使用universal link巧妙解决App端使用metamask App授权以及交互 (part 2)</span>
-            <span class="next-text nav-mobile">Next</span>
-            <i class="iconfont icon-right"></i>
-          </a>
-      </nav>
-    </footer>
-  </article>
-        </div>
-        
-
+  
+  <footer class="mt-12 flex flex-wrap">
+     
+    <a
+      class="mr-1.5 mb-1.5 rounded-lg bg-black/[3%] px-5 py-2 no-underline dark:bg-white/[8%]"
+      href="http://blog.jobinleung.me/tags/rust"
+      >rust</a
+    >
+     
+    <a
+      class="mr-1.5 mb-1.5 rounded-lg bg-black/[3%] px-5 py-2 no-underline dark:bg-white/[8%]"
+      href="http://blog.jobinleung.me/tags/wasm"
+      >wasm</a
+    >
+     
+    <a
+      class="mr-1.5 mb-1.5 rounded-lg bg-black/[3%] px-5 py-2 no-underline dark:bg-white/[8%]"
+      href="http://blog.jobinleung.me/tags/react"
+      >react</a
+    >
+     
+    <a
+      class="mr-1.5 mb-1.5 rounded-lg bg-black/[3%] px-5 py-2 no-underline dark:bg-white/[8%]"
+      href="http://blog.jobinleung.me/tags/webassembly"
+      >WebAssembly</a
+    >
+     
+    <a
+      class="mr-1.5 mb-1.5 rounded-lg bg-black/[3%] px-5 py-2 no-underline dark:bg-white/[8%]"
+      href="http://blog.jobinleung.me/tags/npm"
+      >npm</a
+    >
+    
+  </footer>
   
 
   
+  
+  
+  <nav class="mt-24 flex rounded-lg bg-black/[3%] text-lg dark:bg-white/[8%]">
+    
+    <a
+      class="flex w-1/2 items-center rounded-l-md p-6 pr-3 no-underline hover:bg-black/[2%]"
+      href="http://blog.jobinleung.me/post/summary-of-solidity-knowledge-points/"
+      ><span class="mr-1.5">←</span><span>solidity知识点总结</span></a
+    >
+    
+    
+    <a
+      class="ml-auto flex w-1/2 items-center justify-end rounded-r-md p-6 pl-3 no-underline hover:bg-black/[2%]"
+      href="http://blog.jobinleung.me/post/mobile-app-connects-to-metamask-app-and-signs-via-deep-link-part2/"
+      ><span>使用universal link巧妙解决App端使用metamask App授权以及交互 (part 2)</span><span class="ml-1.5">→</span></a
+    >
+    
+  </nav>
+  
 
-      </div>
+  
+  
+
+  
+  
+</article>
+
+
     </main>
 
-    <footer id="footer" class="footer">
-      <div class="social-links">
-      <a href="mailto:jobinleung@gmail.com" class="iconfont icon-email" title="email"></a>
-      <a href="https://twitter.com/0xleung" class="iconfont icon-twitter" title="twitter"></a>
-      <a href="https://github.com/0xleung" class="iconfont icon-github" title="github"></a>
-  <a href="http://blog.jobinleung.me/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
-</div>
-
-<div class="copyright">
-  <span class="power-by">
-    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
-  </span>
-  <span class="division">|</span>
-  <span class="theme-info">
-    Theme - 
-    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
-  </span>
-
-  
-
-  <span class="copyright-year">
-    &copy; 
-    2022 - 
-    2023<span class="heart"><i class="iconfont icon-heart"></i></span><span>Jobin Leung</span>
-  </span>
-</div>
-
-    </footer>
-
-    <div class="back-to-top" id="back-to-top">
-      <i class="iconfont icon-up"></i>
-    </div>
+    <footer
+  class="opaco mx-auto flex h-[5rem] max-w-3xl items-center px-8 text-[0.9em] opacity-60"
+>
+  <div class="mr-auto">
+    &copy; 2023
+    <a class="link" href="http://blog.jobinleung.me/">Leung</a>
   </div>
-  
-  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+  <a class="link mx-6" href="https://gohugo.io/" rel="noopener" target="_blank"
+    >Powered by Hugo️️</a
+  >️
+  <a
+    class="link"
+    href="https://github.com/nanxiaobei/hugo-paper"
+    rel="noopener"
+    target="_blank"
+    >▷ Paper 6</a
+  >
+</footer>
 
-
-
-<script type="text/javascript" src="/js/main.min.4ae89da218555efa0e7093a20b92017d2e1202b66fff9fc2edf4cb8d44b44c6e.js"></script>
-
-
-
-
-
-
-
-
-</body>
+  </body>
 </html>

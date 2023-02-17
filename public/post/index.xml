@@ -1,12 +1,21 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Posts on Jobin Leung - Blog</title>
+    <title>Posts on Leung</title>
     <link>http://blog.jobinleung.me/post/</link>
-    <description>Recent content in Posts on Jobin Leung - Blog</description>
+    <description>Recent content in Posts on Leung</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Fri, 13 Jan 2023 17:52:24 +0800</lastBuildDate><atom:link href="http://blog.jobinleung.me/post/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 17 Feb 2023 11:37:36 +0800</lastBuildDate><atom:link href="http://blog.jobinleung.me/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>solidity知识点总结</title>
+      <link>http://blog.jobinleung.me/post/summary-of-solidity-knowledge-points/</link>
+      <pubDate>Fri, 17 Feb 2023 11:37:36 +0800</pubDate>
+      
+      <guid>http://blog.jobinleung.me/post/summary-of-solidity-knowledge-points/</guid>
+      <description>1. 类型 1.1 值类型 值类型的变量将始终按值来传递，即值拷贝。 1.1.1 布尔类型 bool: true或者false 运算符： ! （逻辑非） &amp;amp;&amp;amp; （逻辑与， “and” ） || （逻辑</description>
+    </item>
+    
     <item>
       <title>怎样使用rust开发wasm库</title>
       <link>http://blog.jobinleung.me/post/how-to-use-rust-to-develop-wasm-library-/</link>
@@ -40,7 +49,7 @@
       <pubDate>Thu, 03 Mar 2022 15:03:27 +0800</pubDate>
       
       <guid>http://blog.jobinleung.me/post/hello/</guid>
-      <description>现在开始养成写博客的习惯, 博客内容以前端技术以及web, 区块链的一些内容, 但不局限于这些内容. 希望每周至少更新一篇.</description>
+      <description>现在开始养成写博客的习惯, 博客内容可能是一些想法, 技术上遇到的问题, 解决方案, 或者就是简单的总结或感悟.</description>
     </item>
     
   </channel>

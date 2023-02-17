@@ -1,0 +1,1803 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html
+  class="not-ready text-sm lg:text-base"
+  style="--bg: #faf6f1"
+  lang="en"
+>
+  <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1, shrink-to-fit=no"
+  />
+
+  
+  <title>solidity知识点总结 - Leung</title>
+
+  
+  <meta name="theme-color" />
+  
+  <meta name="description" content="1. 类型 1.1 值类型 值类型的变量将始终按值来传递，即值拷贝。 1.1.1 布尔类型 bool: true或者false 运算符： ! （逻辑非） &amp;&amp; （逻辑与， “and” ） || （逻辑" />
+  <meta
+    name="author"
+    content="Jobin Leung"
+  />
+  
+
+  
+  
+  
+  
+  
+  
+  <link rel="preload stylesheet" as="style" href="http://blog.jobinleung.me/main.min.css" />
+
+  
+  <script
+    defer
+    src="http://blog.jobinleung.me/highlight.min.js"
+    onload="hljs.initHighlightingOnLoad();"
+  ></script>
+  
+
+  
+   
+  <link rel="preload" as="image" href="http://blog.jobinleung.me/theme.png" />
+
+  
+  
+  
+  
+
+  
+
+  
+  <link rel="icon" href="http://blog.jobinleung.me/favicon.ico" />
+  <link rel="apple-touch-icon" href="http://blog.jobinleung.me/apple-touch-icon.png" />
+
+  
+  <meta name="generator" content="Hugo 0.109.0">
+
+  
+  
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <meta property="og:title" content="solidity知识点总结" />
+<meta property="og:description" content="1. 类型 1.1 值类型 值类型的变量将始终按值来传递，即值拷贝。 1.1.1 布尔类型 bool: true或者false 运算符： ! （逻辑非） &amp;&amp; （逻辑与， “and” ） || （逻辑" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://blog.jobinleung.me/post/summary-of-solidity-knowledge-points/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2023-02-17T11:37:36+08:00" />
+<meta property="article:modified_time" content="2023-02-17T11:37:36+08:00" />
+
+  
+  <meta itemprop="name" content="solidity知识点总结">
+<meta itemprop="description" content="1. 类型 1.1 值类型 值类型的变量将始终按值来传递，即值拷贝。 1.1.1 布尔类型 bool: true或者false 运算符： ! （逻辑非） &amp;&amp; （逻辑与， “and” ） || （逻辑"><meta itemprop="datePublished" content="2023-02-17T11:37:36+08:00" />
+<meta itemprop="dateModified" content="2023-02-17T11:37:36+08:00" />
+<meta itemprop="wordCount" content="8946">
+<meta itemprop="keywords" content="solidity,eth,evm,contract," />
+  
+  <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="solidity知识点总结"/>
+<meta name="twitter:description" content="1. 类型 1.1 值类型 值类型的变量将始终按值来传递，即值拷贝。 1.1.1 布尔类型 bool: true或者false 运算符： ! （逻辑非） &amp;&amp; （逻辑与， “and” ） || （逻辑"/>
+
+  
+  
+</head>
+
+  <body class="text-black duration-200 ease-out dark:text-white">
+    <header class="mx-auto flex h-[5rem] max-w-3xl px-8 lg:justify-center">
+  <div class="relative z-50 mr-auto flex items-center">
+    <a
+      class="-translate-x-[1px] -translate-y-0.5 text-3xl font-bold"
+      href="http://blog.jobinleung.me/"
+      >Leung</a
+    >
+    <a
+      class="btn-dark ml-6 h-6 w-6 shrink-0 cursor-pointer [background:url(./theme.png)_left_center/_auto_theme('spacing.6')_no-repeat] [transition:_background-position_0.4s_steps(5)] dark:[background-position:right]"
+    ></a>
+  </div>
+
+  <a
+    class="btn-menu relative z-50 -mr-8 flex h-[5rem] w-[5rem] shrink-0 cursor-pointer flex-col items-center justify-center gap-2.5 lg:hidden"
+  ></a>
+
+  
+  <script>
+    
+    const htmlClass = document.documentElement.classList;
+    setTimeout(() => {
+      htmlClass.remove('not-ready');
+    }, 10);
+
+    
+    const btnMenu = document.querySelector('.btn-menu');
+    btnMenu.addEventListener('click', () => {
+      htmlClass.toggle('open');
+    });
+
+    
+    const metaTheme = document.querySelector('meta[name="theme-color"]');
+    const lightBg = `"#faf6f1"`.replace(/"/g, '');
+    const setDark = (isDark) => {
+      metaTheme.setAttribute('content', isDark ? '#000' : lightBg);
+      htmlClass[isDark ? 'add' : 'remove']('dark');
+      localStorage.setItem('dark', isDark);
+    };
+
+    
+    const darkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+    if (htmlClass.contains('dark')) {
+      setDark(true);
+    } else {
+      const darkVal = localStorage.getItem('dark');
+      setDark(darkVal ? darkVal === 'true' : darkScheme.matches);
+    }
+
+    
+    darkScheme.addEventListener('change', (event) => {
+      setDark(event.matches);
+    });
+
+    
+    const btnDark = document.querySelector('.btn-dark');
+    btnDark.addEventListener('click', () => {
+      setDark(localStorage.getItem('dark') !== 'true');
+    });
+  </script>
+
+  <div
+    class="nav-wrapper fixed inset-x-0 top-full z-40 flex h-full select-none flex-col justify-center pb-16 duration-200 dark:bg-black lg:static lg:h-auto lg:flex-row lg:!bg-transparent lg:pb-0 lg:transition-none"
+  >
+    
+    
+    <nav class="lg:ml-12 lg:flex lg:flex-row lg:items-center lg:space-x-6">
+      
+      <a
+        class="block text-center text-2xl leading-[5rem] lg:text-base lg:font-normal"
+        href="/"
+        >Home</a
+      >
+      
+      <a
+        class="block text-center text-2xl leading-[5rem] lg:text-base lg:font-normal"
+        href="https://www.jobinleung.me/"
+        >Profile</a
+      >
+      
+      <a
+        class="block text-center text-2xl leading-[5rem] lg:text-base lg:font-normal"
+        href="/post/"
+        >Archives</a
+      >
+      
+      <a
+        class="block text-center text-2xl leading-[5rem] lg:text-base lg:font-normal"
+        href="/tags/"
+        >Tags</a
+      >
+      
+      <a
+        class="block text-center text-2xl leading-[5rem] lg:text-base lg:font-normal"
+        href="/categories/"
+        >Categories</a
+      >
+      
+    </nav>
+    
+
+    
+  </div>
+</header>
+
+
+    <main
+      class="prose prose-neutral relative mx-auto min-h-[calc(100%-10rem)] max-w-3xl px-8 pt-20 pb-32 dark:prose-invert"
+    >
+      
+
+<article>
+  <header class="mb-20">
+    <h1 class="!my-0 pb-2.5">solidity知识点总结</h1>
+
+    
+    <div class="text-sm opacity-60">
+      
+      <time>Feb 17, 2023</time>
+      
+      
+      <span class="mx-1">&middot;</span>
+      <span>Jobin Leung</span>
+      
+    </div>
+    
+  </header>
+
+  <section><h3 id="1-类型">1. 类型</h3>
+<h4 id="11-值类型">1.1 值类型</h4>
+<p>值类型的变量将始终按值来传递，即值拷贝。</p>
+<h5 id="111-布尔类型">1.1.1 布尔类型</h5>
+<p><code>bool</code>: <code>true</code>或者<code>false</code></p>
+<p>运算符：</p>
+<ul>
+<li><code>!</code> （逻辑非）</li>
+<li><code>&amp;&amp;</code> （逻辑与， “and” ）</li>
+<li><code>||</code> （逻辑或， “or” ）</li>
+<li><code>==</code> （等于）</li>
+<li><code>!=</code> （不等于）</li>
+</ul>
+<p>运算符 <code>||</code> 和 <code>&amp;&amp;</code> 都遵循同样的短路（ short-circuiting ）规则。就是说在表达式 <code>f(x) || g(y)</code> 中， 如果 <code>f(x)</code> 的值为 <code>true</code> ，那么 <code>g(y)</code> 就不会被执行</p>
+<h5 id="112-整形">1.1.2 整形</h5>
+<p><code>int</code>：有符号，从<code>int8</code>到<code>int256</code>，以 <code>8</code> 位为步长递增</p>
+<p><code>uint</code>：无符号，从<code>uint8</code>到<code>uint256</code>，以 <code>8</code> 位为步长递增</p>
+<p><code>uint</code> 和 <code>int</code> 分别是 <code>uint256</code> 和 <code>int256</code> 的别名</p>
+<p>运算符：</p>
+<ul>
+<li>比较运算符： <code>&lt;=</code> ， <code>&lt;</code> ， <code>==</code> ， <code>!=</code> ， <code>&gt;=</code> ， <code>&gt;</code> （返回布尔值）</li>
+<li>位运算符： <code>&amp;</code> ， <code>|</code> ， <code>^</code> （异或）， <code>~</code> （位取反）</li>
+<li>算数运算符： <code>+</code> ， <code>-</code> ， 一元运算 <code>-</code> ， 一元运算 <code>+</code> ， <code>*</code> ， <code>/</code> ， <code>%</code> （取余） ， <code>**</code> （幂）， <code>&lt;&lt;</code> （左移位） ， <code>&gt;&gt;</code> （右移位）</li>
+</ul>
+<h5 id="113-定长浮点型">1.1.3 定长浮点型</h5>
+<p>Solidity 还没有完全支持定长浮点型，因此不建议使用。在 solidity 中一般喜欢使用“单位”的把戏来处理小数，例如 0.01 元钱，可以表示为 1 分钱，从而避免小数的产生</p>
+<p><code>fixed</code> / <code>ufixed</code>：表示各种大小的有符号和无符号的定长浮点型。 在关键字 <code>ufixedMxN</code> 和 <code>fixedMxN</code> 中，<code>M</code> 表示该类型占用的位数，<code>N</code> 表示可用的小数位数。 <code>M</code> 必须能整除 8，即 8 到 256 位。 <code>N</code> 则可以是从 0 到 80 之间的任意数。 <code>ufixed</code> 和 <code>fixed</code> 分别是 <code>ufixed128x19</code> 和 <code>fixed128x19</code> 的别名。</p>
+<h5 id="114-地址类型">1.1.4 地址类型</h5>
+<p><code>address</code>：地址类型存储一个 20 字节的值（以太坊地址的大小）。 地址类型也有成员变量，并作为所有合约的基础。</p>
+<p>运算符：</p>
+<ul>
+<li><code>&lt;=</code>， <code>&lt;</code>， <code>==</code>， <code>!=</code>， <code>&gt;=</code> 和 <code>&gt;</code></li>
+</ul>
+<h6 id="1141-地址类型的成员变量">1.1.4.1 地址类型的成员变量</h6>
+<p><code>address.balance :</code></p>
+<p>以 Wei 为单位的地址类型的余额。</p>
+<ul>
+<li><code>address.transfer(uint256 amount)</code>:</li>
+</ul>
+<p>向地址类型发送数量为 amount 的 Wei，失败时抛出异常，发送 2300 gas 的矿工费，不可调节。</p>
+<ul>
+<li><code>address.send(uint256 amount) returns (bool)</code>:</li>
+</ul>
+<p>向地址类型发送数量为 amount 的 Wei，失败时返回 <code>false</code>，发送 2300 gas 的矿工费用，不可调节。</p>
+<p><code>send</code> 是 <code>transfer</code> 的低级版本。如果执行失败，当前的合约不会因为异常而终止，但 <code>send</code> 会返回 <code>false</code>。</p>
+<ul>
+<li><code>address.call(...) returns (bool)</code>:</li>
+</ul>
+<p>发出低级函数 <code>CALL</code>，失败时返回 <code>false</code>，发送所有可用 gas，可调节。</p>
+<pre><code>namReg.call.gas(1000000)(&quot;register&quot;, &quot;MyName&quot;);
+nameReg.call.gas(1000000).value(1 ether)(&quot;register&quot;, &quot;MyName&quot;);
+</code></pre>
+<ul>
+<li><code>address.callcode(...) returns (bool)</code>：</li>
+</ul>
+<p>发出低级函数 <code>CALLCODE</code>，失败时返回 <code>false</code>，发送所有可用 gas，可调节。</p>
+<ul>
+<li><code>address.delegatecall(...) returns (bool)</code>:</li>
+</ul>
+<p>发出低级函数 <code>DELEGATECALL</code>，失败时返回 <code>false</code>，发送所有可用 gas，可调节。</p>
+<h5 id="115-定长字节数组">1.1.5 定长字节数组</h5>
+<p><code>bytes1</code>， <code>bytes2</code>， <code>bytes3</code>， …， <code>bytes32</code>。<code>byte</code> 是 <code>bytes1</code> 的别名。</p>
+<p>运算符：</p>
+<ul>
+<li>比较运算符：<code>&lt;=</code>， <code>&lt;</code>， <code>==</code>， <code>!=</code>， <code>&gt;=</code>， <code>&gt;</code> （返回布尔型）</li>
+<li>位运算符： <code>&amp;</code>， <code>|</code>， <code>^</code> （按位异或）， <code>~</code> （按位取反）， <code>&lt;&lt;</code> （左移位）， <code>&gt;&gt;</code> （右移位）</li>
+<li>索引访问：如果 <code>x</code> 是 <code>bytesI</code> 类型，那么 <code>x[k]</code> （其中 <code>0 &lt;= k &lt; I</code>）返回第 <code>k</code> 个字节（只读）。</li>
+</ul>
+<p>成员变量：</p>
+<ul>
+<li><code>.length</code> 表示这个字节数组的长度（只读）.</li>
+</ul>
+<h5 id="116-变长字节数组">1.1.6 变长字节数组</h5>
+<p>是引用类型，见后文</p>
+<h5 id="117-地址常量">1.1.7 地址常量</h5>
+<p><code>address public a = 0xdCad3a6d3569DF655070DEd06cb7A1b2Ccd1D3AF;</code></p>
+<h5 id="118-整形常量">1.1.8 整形常量</h5>
+<p><code>uint256 public x = 2e10;</code></p>
+<h5 id="119-字符串常量">1.1.9 字符串常量</h5>
+<p><code>string public abc = 'abc';</code></p>
+<p>可以隐式地转换成 <code>bytes1</code>，……，<code>bytes32</code>，如果合适的话，还可以转换成 <code>bytes</code></p>
+<h5 id="1110-十六进制字面常数">1.1.10 十六进制字面常数</h5>
+<p><code>string public h = hex&quot;010A31&quot;;</code></p>
+<h5 id="1111-枚举">1.1.11 枚举</h5>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">    contract  EgEnum{
+</span></span><span class="line"><span class="cl">        enum Season{Spring, Summer, Autumn, Winter}    function printSeason(Season s) public returns(Season) {
+</span></span><span class="line"><span class="cl">            return s;
+</span></span><span class="line"><span class="cl">        }    function test1() public returns(Season){
+</span></span><span class="line"><span class="cl">            return printSeason(Season.Spring);
+</span></span><span class="line"><span class="cl">        }    function test2() public returns(uint){
+</span></span><span class="line"><span class="cl">            uint s = uint(Season.Spring);
+</span></span><span class="line"><span class="cl">            return s;
+</span></span><span class="line"><span class="cl">        }    function test3() public returns(Season){
+</span></span><span class="line"><span class="cl">            //Season s = Season(5);//越界
+</span></span><span class="line"><span class="cl">            Season s = Season(3);
+</span></span><span class="line"><span class="cl">            return s;
+</span></span><span class="line"><span class="cl">        }
+</span></span><span class="line"><span class="cl">    }
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><code>enum</code>的实际类型是无符号整数，根据其数字大小在<code>uint8</code>到<code>uint256</code>之间</p>
+<h5 id="1112-函数类型">1.1.12 函数类型</h5>
+<p>函数类型是一种表示函数的类型。可以将一个函数赋值给另一个函数类型的变量，也可以将一个函数作为参数进行传递，还能在函数调用中返回函数类型变量。 函数类型有两类：- <em>内部（internal）</em> 函数和 <em>外部（external）</em> 函数：</p>
+<p>内部函数只能在当前合约内被调用（更具体来说，在当前代码块内，包括内部库函数和继承的函数中），因为它们不能在当前合约上下文的外部被执行。 调用一个内部函数是通过跳转到它的入口标签来实现的，就像在当前合约的内部调用一个函数。</p>
+<p>外部函数由一个地址和一个函数签名组成，可以通过外部函数调用传递或者返回。</p>
+<p>函数类型表示成如下的形式:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">    function (&lt;parameter types&gt;) {internal|external} [pure|constant|view|payable] [returns (&lt;return types&gt;)]
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>例如：</p>
+<p><code>function (int256) pure returns(int256) f;</code></p>
+<h5 id="1113-常量">1.1.13 常量</h5>
+<p>状态变量可以被声明为 <code>constant</code>。在这种情况下，只能使用那些在编译时有确定值的表达式来给它们赋值。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">        uint constant x = 32**22 + 8;
+</span></span><span class="line"><span class="cl">        string constant text = &#34;abc&#34;;
+</span></span><span class="line"><span class="cl">        bytes32 constant myHash = keccak256(&#34;abc&#34;);
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="12-引用类型">1.2 引用类型</h4>
+<p>数据存储：即数据是保存在 memory 还是在 storage 中，大多数时候数据都有默认的存储位置，也可以通过在类型名后加关键字进行修改。</p>
+<p>函数参数的默认位置是 memory</p>
+<p>局部变量的默认位置是 storage</p>
+<p>状态变量的数据位置强制为 storage</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">    pragma solidity ^0.4.0;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    contract C {
+</span></span><span class="line"><span class="cl">        uint[] x; // x 的数据存储位置是 storage
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        // memoryArray 的数据存储位置是 memory
+</span></span><span class="line"><span class="cl">        function f(uint[] memoryArray) public {
+</span></span><span class="line"><span class="cl">            x = memoryArray; // 将整个数组拷贝到 storage 中，可行
+</span></span><span class="line"><span class="cl">            var y = x;  // 分配一个指针（其中 y 的数据存储位置是 storage），可行
+</span></span><span class="line"><span class="cl">            y[7]; // 返回第 8 个元素，可行
+</span></span><span class="line"><span class="cl">            y.length = 2; // 通过 y 修改 x，可行
+</span></span><span class="line"><span class="cl">            delete x; // 清除数组，同时修改 y，可行
+</span></span><span class="line"><span class="cl">            // 下面的就不可行了；需要在 storage 中创建新的未命名的临时数组， /
+</span></span><span class="line"><span class="cl">            // 但 storage 是“静态”分配的：
+</span></span><span class="line"><span class="cl">            // y = memoryArray;
+</span></span><span class="line"><span class="cl">            // 下面这一行也不可行，因为这会“重置”指针，
+</span></span><span class="line"><span class="cl">            // 但并没有可以让它指向的合适的存储位置。
+</span></span><span class="line"><span class="cl">            // delete y;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            g(x); // 调用 g 函数，同时移交对 x 的引用
+</span></span><span class="line"><span class="cl">            h(x); // 调用 h 函数，同时在 memory 中创建一个独立的临时拷贝
+</span></span><span class="line"><span class="cl">        }
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        function g(uint[] storage storageArray) internal {}
+</span></span><span class="line"><span class="cl">        function h(uint[] memoryArray) public {}
+</span></span><span class="line"><span class="cl">    }
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h5 id="121-数组">1.2.1 数组</h5>
+<p>数组可以在声明时指定长度，也可以动态调整大小。 对于 存储(storage)的数组来说，元素类型可以是任意的（即元素也可以是数组类型，映射类型或者结构体）。 对于 内存(memory)的数组来说，元素类型不能是映射类型，如果作为 public 函数的参数，它只能是 ABI 类型。</p>
+<p>一个元素类型为 <code>T</code>，固定长度为 <code>k</code> 的数组可以声明为 <code>T[k]</code>，而动态数组声明为 <code>T[]</code>。</p>
+<p><strong>length</strong>:</p>
+<p>数组有 <code>length</code> 成员变量表示当前数组的长度。 动态数组可以在 存储 storage （而不是 内存 memory ）中通过改变成员变量 <code>.length</code> 改变数组大小。 并不能通过访问超出当前数组长度的方式实现自动扩展数组的长度。 一经创建，内存 memory 数组的大小就是固定的（但却是动态的，也就是说，它依赖于运行时的参数）。</p>
+<p><strong>push</strong>:</p>
+<p>变长的 存储 storage 数组以及 <code>bytes</code> 类型（而不是 <code>string</code> 类型）都有一个叫做 <code>push</code> 的成员函数，它用来附加新的元素到数组末尾。 这个函数将返回新的数组长度。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-mysql" data-lang="mysql"><span class="line"><span class="cl"><span class="w">    </span><span class="n">pragma</span><span class="w"> </span><span class="n">solidity</span><span class="w"> </span><span class="o">^</span><span class="mi">0</span><span class="p">.</span><span class="mi">4</span><span class="p">.</span><span class="mi">16</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">contract</span><span class="w"> </span><span class="n">ArrayContract</span><span class="w"> </span><span class="err">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">uint</span><span class="p">[</span><span class="mi">2</span><span class="o">**</span><span class="mi">20</span><span class="p">]</span><span class="w"> </span><span class="n">m_aLotOfIntegers</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="o">//</span><span class="w"> </span><span class="err">注意下面的代码并不是一对动态数组，</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="o">//</span><span class="w"> </span><span class="err">而是一个数组元素为一对变量的动态数组（也就是数组元素为长度为</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="err">的定长数组的动态数组）。</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="kt">bool</span><span class="p">[</span><span class="mi">2</span><span class="p">][]</span><span class="w"> </span><span class="n">m_pairsOfFlags</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="o">//</span><span class="w"> </span><span class="n">newPairs</span><span class="w"> </span><span class="err">存储在</span><span class="w"> </span><span class="n">memory</span><span class="w"> </span><span class="err">中</span><span class="w"> </span><span class="err">——</span><span class="w"> </span><span class="err">函数参数默认的存储位置</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">function</span><span class="w"> </span><span class="nf">setAllFlagPairs</span><span class="p">(</span><span class="kt">bool</span><span class="p">[</span><span class="mi">2</span><span class="p">][]</span><span class="w"> </span><span class="n">newPairs</span><span class="p">)</span><span class="w"> </span><span class="n">public</span><span class="w"> </span><span class="err">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="o">//</span><span class="w"> </span><span class="err">向一个</span><span class="w"> </span><span class="n">storage</span><span class="w"> </span><span class="err">的数组赋值会替代整个数组</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="n">m_pairsOfFlags</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">newPairs</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="err">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">function</span><span class="w"> </span><span class="nf">setFlagPair</span><span class="p">(</span><span class="n">uint</span><span class="w"> </span><span class="k">index</span><span class="p">,</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">flagA</span><span class="p">,</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">flagB</span><span class="p">)</span><span class="w"> </span><span class="n">public</span><span class="w"> </span><span class="err">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="o">//</span><span class="w"> </span><span class="err">访问一个不存在的数组下标会引发一个异常</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="n">m_pairsOfFlags</span><span class="p">[</span><span class="k">index</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">flagA</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="n">m_pairsOfFlags</span><span class="p">[</span><span class="k">index</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">flagB</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="err">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">function</span><span class="w"> </span><span class="nf">changeFlagArraySize</span><span class="p">(</span><span class="n">uint</span><span class="w"> </span><span class="n">newSize</span><span class="p">)</span><span class="w"> </span><span class="n">public</span><span class="w"> </span><span class="err">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="o">//</span><span class="w"> </span><span class="err">如果</span><span class="w"> </span><span class="n">newSize</span><span class="w"> </span><span class="err">更小，那么超出的元素会被清除</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="n">m_pairsOfFlags</span><span class="p">.</span><span class="n">length</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">newSize</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="err">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">function</span><span class="w"> </span><span class="nf">clear</span><span class="p">()</span><span class="w"> </span><span class="n">public</span><span class="w"> </span><span class="err">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="o">//</span><span class="w"> </span><span class="err">这些代码会将数组全部清空</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="k">delete</span><span class="w"> </span><span class="n">m_pairsOfFlags</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="k">delete</span><span class="w"> </span><span class="n">m_aLotOfIntegers</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="o">//</span><span class="w"> </span><span class="err">这里也是实现同样的功能</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="n">m_pairsOfFlags</span><span class="p">.</span><span class="n">length</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="err">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">bytes</span><span class="w"> </span><span class="n">m_byteData</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">function</span><span class="w"> </span><span class="nf">byteArrays</span><span class="p">(</span><span class="n">bytes</span><span class="w"> </span><span class="n">data</span><span class="p">)</span><span class="w"> </span><span class="n">public</span><span class="w"> </span><span class="err">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="o">//</span><span class="w"> </span><span class="err">字节的数组（语言意义中的</span><span class="w"> </span><span class="n">byte</span><span class="w"> </span><span class="err">的复数</span><span class="w"> </span><span class="o">``</span><span class="n">bytes</span><span class="o">``</span><span class="err">）不一样，因为它们不是填充式存储的，</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="o">//</span><span class="w"> </span><span class="err">但可以当作和</span><span class="w"> </span><span class="s2">&#34;uint8[]&#34;</span><span class="w"> </span><span class="err">一样对待</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="n">m_byteData</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">data</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="n">m_byteData</span><span class="p">.</span><span class="n">length</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="mi">7</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="n">m_byteData</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">byte</span><span class="p">(</span><span class="mi">8</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="k">delete</span><span class="w"> </span><span class="n">m_byteData</span><span class="p">[</span><span class="mi">2</span><span class="p">];</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="err">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">function</span><span class="w"> </span><span class="nf">addFlag</span><span class="p">(</span><span class="kt">bool</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="w"> </span><span class="n">flag</span><span class="p">)</span><span class="w"> </span><span class="n">public</span><span class="w"> </span><span class="nf">returns</span><span class="w"> </span><span class="p">(</span><span class="n">uint</span><span class="p">)</span><span class="w"> </span><span class="err">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="n">m_pairsOfFlags</span><span class="p">.</span><span class="nf">push</span><span class="p">(</span><span class="n">flag</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="err">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">function</span><span class="w"> </span><span class="nf">createMemoryArray</span><span class="p">(</span><span class="n">uint</span><span class="w"> </span><span class="n">size</span><span class="p">)</span><span class="w"> </span><span class="n">public</span><span class="w"> </span><span class="n">pure</span><span class="w"> </span><span class="nf">returns</span><span class="w"> </span><span class="p">(</span><span class="n">bytes</span><span class="p">)</span><span class="w"> </span><span class="err">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="o">//</span><span class="w"> </span><span class="err">使用</span><span class="w"> </span><span class="o">`</span><span class="n">new</span><span class="o">`</span><span class="w"> </span><span class="err">创建动态</span><span class="w"> </span><span class="n">memory</span><span class="w"> </span><span class="err">数组：</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="n">uint</span><span class="p">[</span><span class="mi">2</span><span class="p">][]</span><span class="w"> </span><span class="n">memory</span><span class="w"> </span><span class="n">arrayOfPairs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">new</span><span class="w"> </span><span class="n">uint</span><span class="p">[</span><span class="mi">2</span><span class="p">][](</span><span class="n">size</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="o">//</span><span class="w"> </span><span class="err">创建一个动态字节数组：</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="n">bytes</span><span class="w"> </span><span class="n">memory</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">new</span><span class="w"> </span><span class="nf">bytes</span><span class="p">(</span><span class="mi">200</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">uint</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">b</span><span class="p">.</span><span class="n">length</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                </span><span class="n">b</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">byte</span><span class="p">(</span><span class="n">i</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="n">b</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="err">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="err">}</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h5 id="122-结构体">1.2.2 结构体</h5>
+<p>Solidity 支持通过构造结构体的形式定义新的类型，以下是一个结构体使用的示例：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">    pragma solidity ^0.4.11;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    contract CrowdFunding {
+</span></span><span class="line"><span class="cl">        // 定义的新类型包含两个属性。
+</span></span><span class="line"><span class="cl">        struct Funder {
+</span></span><span class="line"><span class="cl">            address addr;
+</span></span><span class="line"><span class="cl">            uint amount;
+</span></span><span class="line"><span class="cl">        }
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        struct Campaign {
+</span></span><span class="line"><span class="cl">            address beneficiary;
+</span></span><span class="line"><span class="cl">            uint fundingGoal;
+</span></span><span class="line"><span class="cl">            uint numFunders;
+</span></span><span class="line"><span class="cl">            uint amount;
+</span></span><span class="line"><span class="cl">            mapping (uint =&gt; Funder) funders;
+</span></span><span class="line"><span class="cl">        }
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        uint numCampaigns;
+</span></span><span class="line"><span class="cl">        mapping (uint =&gt; Campaign) campaigns;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        function newCampaign(address beneficiary, uint goal) public returns (uint campaignID) {
+</span></span><span class="line"><span class="cl">            campaignID = numCampaigns++; // campaignID 作为一个变量返回
+</span></span><span class="line"><span class="cl">            // 创建新的结构体示例，存储在 storage 中。我们先不关注映射类型。
+</span></span><span class="line"><span class="cl">            campaigns[campaignID] = Campaign(beneficiary, goal, 0, 0);
+</span></span><span class="line"><span class="cl">        }
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        function contribute(uint campaignID) public payable {
+</span></span><span class="line"><span class="cl">            Campaign storage c = campaigns[campaignID];
+</span></span><span class="line"><span class="cl">            // 以给定的值初始化，创建一个新的临时 memory 结构体，
+</span></span><span class="line"><span class="cl">            // 并将其拷贝到 storage 中。
+</span></span><span class="line"><span class="cl">            // 注意你也可以使用 Funder(msg.sender, msg.value) 来初始化。
+</span></span><span class="line"><span class="cl">            c.funders[c.numFunders++] = Funder({addr: msg.sender, amount: msg.value});
+</span></span><span class="line"><span class="cl">            c.amount += msg.value;
+</span></span><span class="line"><span class="cl">        }
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        function checkGoalReached(uint campaignID) public returns (bool reached) {
+</span></span><span class="line"><span class="cl">            Campaign storage c = campaigns[campaignID];
+</span></span><span class="line"><span class="cl">            if (c.amount &lt; c.fundingGoal)
+</span></span><span class="line"><span class="cl">                return false;
+</span></span><span class="line"><span class="cl">            uint amount = c.amount;
+</span></span><span class="line"><span class="cl">            c.amount = 0;
+</span></span><span class="line"><span class="cl">            c.beneficiary.transfer(amount);
+</span></span><span class="line"><span class="cl">            return true;
+</span></span><span class="line"><span class="cl">        }
+</span></span><span class="line"><span class="cl">    }
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="13-映射-mapping">1.3 映射 mapping</h4>
+<p>映射类型在声明时的形式为 <code>mapping(_KeyType =&gt; _ValueType)</code>。 其中 <code>_KeyType</code> 可以是除了映射、变长数组、合约、枚举以及结构体以外的几乎所有类型。 <code>_ValueType</code> 可以是包括映射类型在内的任何类型。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">    pragma solidity ^0.4.0;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    contract MappingExample {
+</span></span><span class="line"><span class="cl">        mapping(address =&gt; uint) public balances;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        function update(uint newBalance) public {
+</span></span><span class="line"><span class="cl">            balances[msg.sender] = newBalance;
+</span></span><span class="line"><span class="cl">        }
+</span></span><span class="line"><span class="cl">    }
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    contract MappingUser {
+</span></span><span class="line"><span class="cl">        function f() public returns (uint) {
+</span></span><span class="line"><span class="cl">            MappingExample m = new MappingExample();
+</span></span><span class="line"><span class="cl">            m.update(100);
+</span></span><span class="line"><span class="cl">            return m.balances(this);
+</span></span><span class="line"><span class="cl">        }
+</span></span><span class="line"><span class="cl">    }
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="2内置的变量和函数">2.内置的变量和函数</h3>
+<h4 id="21-以太币单位">2.1 以太币单位</h4>
+<p>以太币 Ether 单位之间的换算就是在数字后边加上 <code>wei</code>、 <code>finney</code>、 <code>szabo</code> 或 <code>ether</code> 来实现的，如果后面没有单位，<strong>缺省为 Wei</strong>。例如 <code>2 ether == 2000 finney</code></p>
+<h4 id="22-时间单位">2.2 时间单位</h4>
+<p><strong>秒是缺省时间单位</strong>，在时间单位之间，数字后面带有 <code>seconds</code>、 <code>minutes</code>、 <code>hours</code>、 <code>days</code>、 <code>weeks</code> 和 <code>years</code> 的可以进行换算，基本换算关系如下：</p>
+<p><code>1 == 1 seconds</code></p>
+<p><code>1 minutes == 60 seconds</code></p>
+<p><code>1 hours == 60 minutes</code></p>
+<p><code>1 days == 24 hours</code></p>
+<p><code>1 weeks == 7 days</code></p>
+<h4 id="23-函数">2.3 函数</h4>
+<h5 id="231-区块和交易属性">2.3.1 区块和交易属性</h5>
+<ul>
+<li><code>block.blockhash(uint blockNumber) returns (bytes32)</code>：指定区块的区块哈希——仅可用于最新的 256 个区块且不包括当前区块；而 blocks 从 0.4.22 版本开始已经不推荐使用，由 <code>blockhash(uint blockNumber)</code> 代替</li>
+<li><code>block.coinbase returns(address)</code>: 挖出当前区块的矿工地址</li>
+<li><code>block.difficulty returns(uint)</code>: 当前区块难度</li>
+<li><code>block.gaslimit returns(uint)</code>: 当前区块 gas 限额</li>
+<li><code>block.number returns(uint)</code>: 当前区块号</li>
+<li><code>block.timestamp returns(uint)</code>: 自 unix epoch 起始当前区块以秒计的时间戳</li>
+<li><code>gasleft() returns (uint256)</code>：剩余的 gas</li>
+<li><code>msg.data returns(bytes)</code>: 完整的 calldata</li>
+<li><code>msg.gas returns(uint)</code>: 剩余 gas - 自 0.4.21 版本开始已经不推荐使用，由 <code>gesleft()</code> 代替</li>
+<li><code>msg.sender returns(address)</code>: 消息发送者（当前调用）</li>
+<li><code>msg.sig returns(bytes4)</code>: calldata 的前 4 字节（也就是函数标识符）</li>
+<li><code>msg.value returns(uint)</code>: 随消息发送的 wei 的数量</li>
+<li><code>now returns(uint)</code>: 目前区块时间戳（<code>block.timestamp</code>）</li>
+<li><code>tx.gasprice returns(uint)</code>: 交易的 gas 价格</li>
+<li><code>tx.origin returns(address)</code>: 交易发起者（完全的调用链）</li>
+</ul>
+<h5 id="232-abi-编码函数">2.3.2 ABI 编码函数</h5>
+<ul>
+<li><code>abi.encode(...) returns (bytes)</code>： ABI- 对给定参数进行编码</li>
+<li><code>abi.encodePacked(...) returns (bytes)</code>：对给定参数执行紧打包编码</li>
+<li><code>abi.encodeWithSelector(bytes4 selector, ...) returns (bytes)</code>： ABI- 对给定参数进行编码，并以给定的函数选择器作为起始的 4 字节数据一起返回</li>
+<li><code>abi.encodeWithSignature(string signature, ...) returns (bytes)</code>：等价于 <code>abi.encodeWithSelector(bytes4(keccak256(signature), ...)</code></li>
+</ul>
+<h5 id="233-错误处理">2.3.3 错误处理</h5>
+<ul>
+<li>
+<p><code>assert(bool condition)</code>:</p>
+<p>如果条件不满足，则使当前交易没有效果 — 用于检查内部错误。</p>
+</li>
+<li>
+<p><code>require(bool condition)</code>:</p>
+<p>如果条件不满足则撤销状态更改 - 用于检查由输入或者外部组件引起的错误。</p>
+</li>
+<li>
+<p><code>require(bool condition, string message)</code>:</p>
+<p>如果条件不满足则撤销状态更改 - 用于检查由输入或者外部组件引起的错误，可以同时提供一个错误消息。</p>
+</li>
+<li>
+<p><code>revert()</code>:</p>
+<p>终止运行并撤销状态更改。</p>
+</li>
+<li>
+<p><code>revert(string reason)</code>:</p>
+<p>终止运行并撤销状态更改，可以同时提供一个解释性的字符串。</p>
+</li>
+</ul>
+<h5 id="234-数学和密码学函数">2.3.4 数学和密码学函数</h5>
+<ul>
+<li>
+<p><code>addmod(uint x, uint y, uint k) returns (uint)</code>:</p>
+<p>计算 <code>(x + y) % k</code>，加法会在任意精度下执行，并且加法的结果即使超过 <code>2**256</code> 也不会被截取。从 0.5.0 版本的编译器开始会加入对 <code>k != 0</code> 的校验（assert）。</p>
+</li>
+<li>
+<p><code>mulmod(uint x, uint y, uint k) returns (uint)</code>:</p>
+<p>计算 <code>(x * y) % k</code>，乘法会在任意精度下执行，并且乘法的结果即使超过 <code>2**256</code> 也不会被截取。从 0.5.0 版本的编译器开始会加入对 <code>k != 0</code> 的校验（assert）。</p>
+</li>
+<li>
+<p><code>keccak256(...) returns (bytes32)</code>:</p>
+<p>Ethereum-SHA-3 （Keccak-256）哈希。</p>
+</li>
+<li>
+<p><code>sha256(...) returns (bytes32)</code>:</p>
+<p>计算 SHA-256 哈希。</p>
+</li>
+<li>
+<p><code>sha3(...) returns (bytes32)</code>:</p>
+<p>等价于 keccak256。</p>
+</li>
+<li>
+<p><code>ripemd160(...) returns (bytes20)</code>:</p>
+<p>计算 RIPEMD-160 哈希。</p>
+</li>
+<li>
+<p><code>ecrecover(bytes32 hash, uint8 v, bytes32 r, bytes32 s) returns (address)</code> ：</p>
+<p>利用椭圆曲线签名恢复与公钥相关的地址，错误返回零值。</p>
+</li>
+</ul>
+<h5 id="235-地址相关">2.3.5 地址相关</h5>
+<ul>
+<li>
+<p><code>address.balance (uint256)</code>:<br>
+以 Wei 为单位的 地址类型 的余额。</p>
+</li>
+<li>
+<p><code>address.transfer(uint256 amount)</code>:<br>
+向 地址类型 发送数量为 amount 的 Wei，失败时抛出异常，发送 2300 gas 的矿工费，不可调节。</p>
+</li>
+<li>
+<p><code>address.send(uint256 amount) returns (bool)</code>:<br>
+向 地址类型 发送数量为 amount 的 Wei，失败时返回 false，发送 2300 gas 的矿工费用，不可调节。</p>
+<p>如果调用栈深度已经达到 1024，转账会失败</p>
+</li>
+<li>
+<p><code>address.call(...) returns (bool)</code>:<br>
+发出低级函数 CALL，失败时返回 false，发送所有可用 gas，可调节。</p>
+</li>
+<li>
+<p><code>address.callcode(...) returns (bool)</code>：<br>
+发出低级函数 CALLCODE，失败时返回 false，发送所有可用 gas，可调节。(不鼓励使用)</p>
+</li>
+<li>
+<p><code>address.delegatecall(...) returns (bool)</code>:<br>
+发出低级函数 DELEGATECALL，失败时返回 false，发送所有可用 gas，可调节。</p>
+</li>
+</ul>
+<h5 id="236-合约相关">2.3.6 合约相关</h5>
+<ul>
+<li><code>this (current contract's type)</code>:<br>
+当前合约，可以明确转换为 地址类型。</li>
+<li><code>selfdestruct(address recipient)</code>:<br>
+销毁合约，并把余额发送到指定 地址类型。</li>
+<li><code>suicide(address recipient)</code>:<br>
+与 selfdestruct 等价，但已不推荐使用。<br>
+此外，当前合约内的所有函数都可以被直接调用，包括当前函数。</li>
+</ul>
+<h3 id="3-方法函数">3 方法/函数</h3>
+<h4 id="31-方法的多返回值">3.1 方法的多返回值</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">    pragma solidity &gt;0.4.23 &lt;0.5.0;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    contract C {
+</span></span><span class="line"><span class="cl">        uint[] data;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        function f() public pure returns (uint, bool, uint) {
+</span></span><span class="line"><span class="cl">            return (7, true, 2);
+</span></span><span class="line"><span class="cl">        }
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        function g() public {
+</span></span><span class="line"><span class="cl">            //基于返回的元组来声明变量并赋值
+</span></span><span class="line"><span class="cl">            (uint x, bool b, uint y) = f();
+</span></span><span class="line"><span class="cl">            //交换两个值的通用窍门——但不适用于非值类型的存储 (storage) 变量。
+</span></span><span class="line"><span class="cl">            (x, y) = (y, x);
+</span></span><span class="line"><span class="cl">            //元组的末尾元素可以省略（也适用于变量声明）。
+</span></span><span class="line"><span class="cl">            (data.length,,) = f(); // 将长度设置为 7
+</span></span><span class="line"><span class="cl">            //省略元组中末尾元素的写法，仅可以在赋值操作的左侧使用，除了这个例外：
+</span></span><span class="line"><span class="cl">            (x,) = (1,);
+</span></span><span class="line"><span class="cl">            //(1,) 是指定单元素元组的唯一方法，因为 (1)相当于 1。
+</span></span><span class="line"><span class="cl">        }
+</span></span><span class="line"><span class="cl">    }
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="32-错误处理">3.2 错误处理</h4>
+<p>Solidity 提供了很多错误检查和错误处理的方法。通常，检查是为了防止未经授权的代码访问，当发生错误时，状态会恢复到初始状态。</p>
+<p>下面是错误处理中，使用的一些重要方法：</p>
+<ul>
+<li>
+<p><code>assert(bool condition)</code></p>
+<p>如果不满足条件，此方法调用将导致一个无效的操作码，对状态所做的任何更改将被还原。这个方法是用来处理内部错误的。</p>
+</li>
+<li>
+<p><code>require(bool condition)</code></p>
+<p>如果不满足条件，此方法调用将恢复到原始状态。此方法用于检查输入或外部组件的错误。</p>
+</li>
+<li>
+<p><code>require(bool condition, string memory message)</code></p>
+<p>如果不满足条件，此方法调用将恢复到原始状态。此方法用于检查输入或外部组件的错误。它提供了一个提供自定义消息的选项。</p>
+</li>
+<li>
+<p><code>revert()</code></p>
+<p>此方法将中止执行并将所做的更改还原为执行前状态。</p>
+</li>
+<li>
+<p><code>revert(string memory reason)</code></p>
+<p>此方法将中止执行并将所做的更改还原为执行前状态。它提供了一个提供自定义消息的选项。</p>
+</li>
+</ul>
+<h4 id="33-函数修饰符-modifier">3.3 函数修饰符 modifier</h4>
+<p>使用 修饰器 modifier 可以轻松改变函数的行为。 例如，它们可以在执行函数之前自动检查某个条件。 修饰器 modifier 是合约的可继承属性， 并可能被派生合约覆盖。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
+</span><span class="lnt">64
+</span><span class="lnt">65
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-mysql" data-lang="mysql"><span class="line"><span class="cl"><span class="w">    </span><span class="n">pragma</span><span class="w"> </span><span class="n">solidity</span><span class="w"> </span><span class="o">^</span><span class="mi">0</span><span class="p">.</span><span class="mi">4</span><span class="p">.</span><span class="mi">11</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">contract</span><span class="w"> </span><span class="n">owned</span><span class="w"> </span><span class="err">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">function</span><span class="w"> </span><span class="nf">owned</span><span class="p">()</span><span class="w"> </span><span class="n">public</span><span class="w"> </span><span class="err">{</span><span class="w"> </span><span class="n">owner</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">msg</span><span class="p">.</span><span class="n">sender</span><span class="p">;</span><span class="w"> </span><span class="err">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">address</span><span class="w"> </span><span class="n">owner</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="o">//</span><span class="w"> </span><span class="err">这个合约只定义一个修饰器，但并未使用：</span><span class="w"> </span><span class="err">它将会在派生合约中用到。</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="o">//</span><span class="w"> </span><span class="err">修饰器所修饰的函数体会被插入到特殊符号</span><span class="w"> </span><span class="n">_</span><span class="p">;</span><span class="w"> </span><span class="err">的位置。</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="o">//</span><span class="w"> </span><span class="err">这意味着如果是</span><span class="w"> </span><span class="n">owner</span><span class="w"> </span><span class="err">调用这个函数，则函数会被执行，否则会抛出异常。</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">modifier</span><span class="w"> </span><span class="n">onlyOwner</span><span class="w"> </span><span class="err">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="k">require</span><span class="p">(</span><span class="n">msg</span><span class="p">.</span><span class="n">sender</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">owner</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="n">_</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="err">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="err">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">contract</span><span class="w"> </span><span class="n">mortal</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">owned</span><span class="w"> </span><span class="err">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="o">//</span><span class="w"> </span><span class="err">这个合约从</span><span class="w"> </span><span class="o">`</span><span class="n">owned</span><span class="o">`</span><span class="w"> </span><span class="err">继承了</span><span class="w"> </span><span class="o">`</span><span class="n">onlyOwner</span><span class="o">`</span><span class="w"> </span><span class="err">修饰符，并将其应用于</span><span class="w"> </span><span class="o">`</span><span class="n">close</span><span class="o">`</span><span class="w"> </span><span class="err">函数，</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="o">//</span><span class="w"> </span><span class="err">只有在合约里保存的</span><span class="w"> </span><span class="n">owner</span><span class="w"> </span><span class="err">调用</span><span class="w"> </span><span class="o">`</span><span class="n">close</span><span class="o">`</span><span class="w"> </span><span class="err">函数，才会生效。</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">function</span><span class="w"> </span><span class="nf">close</span><span class="p">()</span><span class="w"> </span><span class="n">public</span><span class="w"> </span><span class="n">onlyOwner</span><span class="w"> </span><span class="err">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="o">//</span><span class="w"> </span><span class="err">销毁合约</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="nf">selfdestruct</span><span class="p">(</span><span class="n">owner</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="err">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="err">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">contract</span><span class="w"> </span><span class="n">priced</span><span class="w"> </span><span class="err">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="o">//</span><span class="w"> </span><span class="err">修改器可以接收参数：</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">modifier</span><span class="w"> </span><span class="nf">costs</span><span class="p">(</span><span class="n">uint</span><span class="w"> </span><span class="n">price</span><span class="p">)</span><span class="w"> </span><span class="err">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">msg</span><span class="p">.</span><span class="n">value</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="n">price</span><span class="p">)</span><span class="w"> </span><span class="err">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                </span><span class="n">_</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="err">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="err">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="err">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">contract</span><span class="w"> </span><span class="n">Register</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">priced</span><span class="p">,</span><span class="w"> </span><span class="n">owned</span><span class="w"> </span><span class="err">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nf">mapping</span><span class="w"> </span><span class="p">(</span><span class="n">address</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="kt">bool</span><span class="p">)</span><span class="w"> </span><span class="n">registeredAddresses</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">uint</span><span class="w"> </span><span class="n">price</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">function</span><span class="w"> </span><span class="nf">Register</span><span class="p">(</span><span class="n">uint</span><span class="w"> </span><span class="n">initialPrice</span><span class="p">)</span><span class="w"> </span><span class="n">public</span><span class="w"> </span><span class="err">{</span><span class="w"> </span><span class="n">price</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">initialPrice</span><span class="p">;</span><span class="w"> </span><span class="err">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="o">//</span><span class="w"> </span><span class="err">在这里也使用关键字</span><span class="w"> </span><span class="o">`</span><span class="n">payable</span><span class="o">`</span><span class="w"> </span><span class="err">非常重要，否则函数会自动拒绝所有发送给它的以太币。</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">function</span><span class="w"> </span><span class="nf">register</span><span class="p">()</span><span class="w"> </span><span class="n">public</span><span class="w"> </span><span class="n">payable</span><span class="w"> </span><span class="nf">costs</span><span class="p">(</span><span class="n">price</span><span class="p">)</span><span class="w"> </span><span class="err">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="n">registeredAddresses</span><span class="p">[</span><span class="n">msg</span><span class="p">.</span><span class="n">sender</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="no">true</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="err">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">function</span><span class="w"> </span><span class="nf">changePrice</span><span class="p">(</span><span class="n">uint</span><span class="w"> </span><span class="n">_price</span><span class="p">)</span><span class="w"> </span><span class="n">public</span><span class="w"> </span><span class="n">onlyOwner</span><span class="w"> </span><span class="err">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="n">price</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">_price</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="err">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="err">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">contract</span><span class="w"> </span><span class="n">Mutex</span><span class="w"> </span><span class="err">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="kt">bool</span><span class="w"> </span><span class="n">locked</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">modifier</span><span class="w"> </span><span class="nf">noReentrancy</span><span class="p">()</span><span class="w"> </span><span class="err">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="k">require</span><span class="p">(</span><span class="o">!</span><span class="n">locked</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="n">locked</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="no">true</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="n">_</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="n">locked</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="no">false</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="err">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="o">//</span><span class="w"> </span><span class="err">这个函数受互斥量保护，这意味着</span><span class="w"> </span><span class="o">`</span><span class="n">msg</span><span class="p">.</span><span class="n">sender</span><span class="p">.</span><span class="k">call</span><span class="o">`</span><span class="w"> </span><span class="err">中的重入调用不能再次调用</span><span class="w">  </span><span class="o">`</span><span class="n">f</span><span class="o">`</span><span class="err">。</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="o">//</span><span class="w"> </span><span class="o">`</span><span class="k">return</span><span class="w"> </span><span class="mi">7</span><span class="o">`</span><span class="w"> </span><span class="err">语句指定返回值为</span><span class="w"> </span><span class="mi">7</span><span class="err">，但修改器中的语句</span><span class="w"> </span><span class="o">`</span><span class="n">locked</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="no">false</span><span class="o">`</span><span class="w"> </span><span class="err">仍会执行。</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">function</span><span class="w"> </span><span class="nf">f</span><span class="p">()</span><span class="w"> </span><span class="n">public</span><span class="w"> </span><span class="n">noReentrancy</span><span class="w"> </span><span class="nf">returns</span><span class="w"> </span><span class="p">(</span><span class="n">uint</span><span class="p">)</span><span class="w"> </span><span class="err">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="k">require</span><span class="p">(</span><span class="n">msg</span><span class="p">.</span><span class="n">sender</span><span class="p">.</span><span class="k">call</span><span class="p">());</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="mi">7</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="err">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="err">}</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>如果同一个函数有多个 修饰器 modifier，它们之间以空格隔开，修饰器 modifier 会依次检查执行。</p>
+<h4 id="34-函数的-view-和-pure-修饰符及-fallback-函数">3.4 函数的 view 和 pure 修饰符及 fallback 函数</h4>
+<h5 id="341-view">3.4.1 <code>view</code></h5>
+<p>View(视图)函数不会修改状态。如果函数中存在以下语句，则被视为修改状态，编译器将抛出警告。</p>
+<ul>
+<li>修改状态变量。</li>
+<li>触发事件。</li>
+<li>创建合约。</li>
+<li>使用<code>selfdestruct</code>。</li>
+<li>发送以太。</li>
+<li>调用任何不是视图函数或纯函数的函数</li>
+<li>使用底层调用</li>
+<li>使用包含某些操作码的内联程序集。</li>
+</ul>
+<p>Getter 方法是默认的视图函数。声明视图函数，可以在函数声明里，添加<code>view</code>关键字。</p>
+<p><strong><code>constant</code> 是 <code>view</code> 的别名。</strong></p>
+<p><strong>编译器没有强制 <code>view</code> 方法不能修改状态。</strong></p>
+<h5 id="342-pure">3.4.2 <code>pure</code></h5>
+<p>Pure(纯)函数<strong>不读取</strong>或修改状态。如果函数中存在以下语句，则被视为读取状态，编译器将抛出警告。</p>
+<ul>
+<li>读取状态变量。</li>
+<li>访问 <code>address(this).balance</code> 或 <code>&lt;address&gt;.balance</code></li>
+<li>访问任何区块、交易、msg 等特殊变量(msg.sig 与 msg.data 允许读取)。</li>
+<li>调用任何不是纯函数的函数。</li>
+<li>使用包含特定操作码的内联程序集。</li>
+</ul>
+<p>如果发生错误，纯函数可以使用<code>revert()</code>和<code>require()</code>函数来还原潜在的状态更改。</p>
+<p>声明纯函数，可以在函数声明里，添加<code>pure</code>关键字。</p>
+<h5 id="343-payable">3.4.3 payable</h5>
+<p><code>payable</code> 修饰函数时：允许该方法接收以太币 Ether</p>
+<h5 id="344-fallback">3.4.4 fallback</h5>
+<p>fallback(回退) 函数是合约中的特殊函数。它有以下特点</p>
+<ul>
+<li>当合约中不存在的函数被调用时，将调用 fallback 函数。</li>
+<li>被标记为外部函数。</li>
+<li>它没有名字。</li>
+<li>它没有参数。</li>
+<li>它不能返回任何东西。</li>
+<li>每个合约定义一个 fallback 函数。</li>
+<li>如果没有被标记为<code>payable</code>，则当合约收到无数据的以太币转账时，将抛出异常。</li>
+</ul>
+<p><strong>语法</strong></p>
+<pre><code>// 没有名字，没有参数，不返回，标记为external，可以标记为payable
+function() external {
+    // statements
+}
+</code></pre>
+<p>复制</p>
+<p>下面的示例展示了合约中的回退函数概念。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">    pragma solidity ^0.5.0;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    contract Test {
+</span></span><span class="line"><span class="cl">       uint public x ;
+</span></span><span class="line"><span class="cl">       function() external { x = 1; }
+</span></span><span class="line"><span class="cl">    }
+</span></span><span class="line"><span class="cl">    contract Sink {
+</span></span><span class="line"><span class="cl">       function() external payable { }
+</span></span><span class="line"><span class="cl">    }
+</span></span><span class="line"><span class="cl">    contract Caller {
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">       function callTest(Test test) public returns (bool) {
+</span></span><span class="line"><span class="cl">          (bool success,) = address(test).call(abi.encodeWithSignature(&#34;nonExistingFunction()&#34;));
+</span></span><span class="line"><span class="cl">          require(success);
+</span></span><span class="line"><span class="cl">          // test.x 是 1
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">          address payable testPayable = address(uint160(address(test)));
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">          // 发送以太测试合同,
+</span></span><span class="line"><span class="cl">          // 转账将失败，这里返回false。
+</span></span><span class="line"><span class="cl">          return (testPayable.send(2 ether));
+</span></span><span class="line"><span class="cl">       }
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">       function callSink(Sink sink) public returns (bool) {
+</span></span><span class="line"><span class="cl">          address payable sinkPayable = address(sink);
+</span></span><span class="line"><span class="cl">          return (sinkPayable.send(2 ether));
+</span></span><span class="line"><span class="cl">       }
+</span></span><span class="line"><span class="cl">    }
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="35-函数重载">3.5 函数重载</h4>
+<p>同一个作用域内，相同函数名可以定义多个函数。这些函数的参数(参数类型或参数数量)必须不一样。仅仅是返回值不一样不被允许。</p>
+<p>下面的例子展示了 Solidity 中的函数重载。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">    pragma solidity ^0.5.0;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    contract Test {
+</span></span><span class="line"><span class="cl">       function getSum(uint a, uint b) public pure returns(uint){
+</span></span><span class="line"><span class="cl">          return a + b;
+</span></span><span class="line"><span class="cl">       }
+</span></span><span class="line"><span class="cl">       function getSum(uint a, uint b, uint c) public pure returns(uint){
+</span></span><span class="line"><span class="cl">          return a + b + c;
+</span></span><span class="line"><span class="cl">       }
+</span></span><span class="line"><span class="cl">    }
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="36-数学函数">3.6 数学函数</h4>
+<p>Solidity 也提供了内置的数学函数。下面是常用的数学函数：</p>
+<ul>
+<li><code>addmod(uint x, uint y, uint k) returns (uint)</code> 计算(x + y) % k，计算中，以任意精度执行加法，且不限于 2^256 大小。</li>
+<li><code>mulmod(uint x, uint y, uint k) returns (uint)</code> 计算(x * y) % k，计算中，以任意精度执行乘法，且不限于 2^256 大小。</li>
+</ul>
+<p>下面的例子说明了数学函数的用法。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">    pragma solidity ^0.5.0;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    contract Test {
+</span></span><span class="line"><span class="cl">       function callAddMod() public pure returns(uint){
+</span></span><span class="line"><span class="cl">          return addmod(4, 5, 3);
+</span></span><span class="line"><span class="cl">       }
+</span></span><span class="line"><span class="cl">       function callMulMod() public pure returns(uint){
+</span></span><span class="line"><span class="cl">          return mulmod(4, 5, 3);
+</span></span><span class="line"><span class="cl">       }
+</span></span><span class="line"><span class="cl">    }
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>输出</strong></p>
+<pre><code>0: uint256: 0
+0: uint256: 2
+</code></pre>
+<h4 id="37-加密函数">3.7 加密函数</h4>
+<p>Solidity 提供了常用的加密函数。以下是一些重要函数：</p>
+<ul>
+<li><code>keccak256(bytes memory) returns (bytes32)</code> 计算输入的 Keccak-256 散列。</li>
+<li><code>sha256(bytes memory) returns (bytes32)</code> 计算输入的 SHA-256 散列。</li>
+<li><code>ripemd160(bytes memory) returns (bytes20)</code> 计算输入的 RIPEMD-160 散列。</li>
+<li><code>ecrecover(bytes32 hash, uint8 v, bytes32 r, bytes32 s) returns (address)</code> 从椭圆曲线签名中恢复与公钥相关的地址，或在出错时返回零。函数参数对应于签名的 ECDSA 值: r – 签名的前 32 字节; s: 签名的第二个 32 字节; v: 签名的最后一个字节。这个方法返回一个地址。</li>
+</ul>
+<p>下面的例子说明了加密函数的用法。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">    pragma solidity ^0.5.0;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    contract Test {
+</span></span><span class="line"><span class="cl">       function callKeccak256() public pure returns(bytes32 result){
+</span></span><span class="line"><span class="cl">          return keccak256(&#34;ABC&#34;);
+</span></span><span class="line"><span class="cl">       }
+</span></span><span class="line"><span class="cl">    }
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>输出</strong></p>
+<pre><code>0: bytes32: result 0xe1629b9dda060bb30c7908346f6af189c16773fa148d3366701fbaa35d54f3c8
+</code></pre>
+<h4 id="38-事件-event">3.8 事件 event</h4>
+<p>事件是智能合约发出的信号。智能合约的前端 UI，例如，DApps、web.js，或者任何与 Ethereum JSON-RPC API 连接的东西，都可以侦听这些事件。事件可以被索引，以便以后可以搜索事件记录。</p>
+<p>Solidity 中，要定义事件，可以使用<code>event</code>关键字(在用法上类似于<code>function</code>关键字)。然后可以在函数中使用<code>emit</code>关键字触发事件。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">    pragma solidity ^0.5.0;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    contract Counter {
+</span></span><span class="line"><span class="cl">        uint256 public count = 0;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        event Increment(address who);   // 声明事件
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        function increment() public {
+</span></span><span class="line"><span class="cl">            emit Increment(msg.sender); // 触发事件
+</span></span><span class="line"><span class="cl">            count += 1;
+</span></span><span class="line"><span class="cl">        }
+</span></span><span class="line"><span class="cl">    }
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>使用 JavaScript API 调用事件的用法如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-mysql" data-lang="mysql"><span class="line"><span class="cl"><span class="w">    </span><span class="n">var</span><span class="w"> </span><span class="n">abi</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="cm">/* abi 由编译器产生 */</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">var</span><span class="w"> </span><span class="n">ClientReceipt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">web3</span><span class="p">.</span><span class="n">eth</span><span class="p">.</span><span class="nf">contract</span><span class="p">(</span><span class="n">abi</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">var</span><span class="w"> </span><span class="n">clientReceipt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ClientReceipt</span><span class="p">.</span><span class="nf">at</span><span class="p">(</span><span class="s2">&#34;0x1234...ab67&#34;</span><span class="w"> </span><span class="cm">/* 地址 */</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">var</span><span class="w"> </span><span class="n">event</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">clientReceipt</span><span class="p">.</span><span class="nf">Increment</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="o">//</span><span class="w"> </span><span class="err">监视变化</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">event</span><span class="p">.</span><span class="nf">watch</span><span class="p">(</span><span class="nf">function</span><span class="p">(</span><span class="n">error</span><span class="p">,</span><span class="w"> </span><span class="n">result</span><span class="p">)</span><span class="err">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="o">//</span><span class="w"> </span><span class="err">结果包括对</span><span class="w"> </span><span class="o">`</span><span class="n">Increment</span><span class="o">`</span><span class="w"> </span><span class="err">的调用参数在内的各种信息。</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">error</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="n">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="n">result</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="err">}</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="o">//</span><span class="w"> </span><span class="err">或者通过回调立即开始观察</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">var</span><span class="w"> </span><span class="n">event</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">clientReceipt</span><span class="p">.</span><span class="nf">Increment</span><span class="p">(</span><span class="nf">function</span><span class="p">(</span><span class="n">error</span><span class="p">,</span><span class="w"> </span><span class="n">result</span><span class="p">)</span><span class="w"> </span><span class="err">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">error</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="n">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="n">result</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="err">}</span><span class="p">);</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>索引(indexed)参数</p>
+<p>一个事件最多有 3 个参数可以标记为索引。可以使用索引参数有效地过滤事件。下面的代码增强了前面的示例，来跟踪多个计数器，每个计数器由一个数字 ID 标识:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">    pragma solidity ^0.4.21;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    contract Multicounter {
+</span></span><span class="line"><span class="cl">        mapping (uint256 =&gt; uint256) public counts;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        event Increment(uint256 indexed which, address who);
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        function increment(uint256 which) public {
+</span></span><span class="line"><span class="cl">            emit Increment(which, msg.sender);
+</span></span><span class="line"><span class="cl">            counts[which] += 1;
+</span></span><span class="line"><span class="cl">        }
+</span></span><span class="line"><span class="cl">    }
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>复制</p>
+<ul>
+<li><code>counts</code>替换<code>count</code>，<code>counts</code>是一个 map。</li>
+<li><code>event Increment(uint256 indexed which, address who)</code> 添加一个索引参数，该参数表示哪个计数器。</li>
+<li><code>emit Increment(which, msg.sender)</code> 用 2 个参数记录事件。</li>
+</ul>
+<p>在 Javascript 中，可以使用索引访问计数器：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    counter.Increment({ which: counterId }, function (err, result) {
+</span></span><span class="line"><span class="cl">      if (err) {
+</span></span><span class="line"><span class="cl">        return error(err);
+</span></span><span class="line"><span class="cl">      }
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">      log(&#34;Counter &#34; + result.args.which + &#34; was incremented by address: &#34;
+</span></span><span class="line"><span class="cl">          + result.args.who);
+</span></span><span class="line"><span class="cl">      getCount();
+</span></span><span class="line"><span class="cl">    });
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="4-可见性作用域">4 可见性，作用域</h3>
+<h4 id="41-函数的可见性">4.1 函数的可见性</h4>
+<p>有 4 种可见类型，<code>external</code> ，<code>public</code> ，<code>internal</code> ，<code>private</code>,默认情况下是<code>public</code></p>
+<ul>
+<li>
+<p><code>external</code></p>
+<p>即外部函数，作为合约接口的一部分，意味着我们可以从其他合约和交易中调用。 一个外部函数 <code>f()</code> 不能从内部调用（即 <code>f()</code> 不起作用，但 <code>this.f()</code> 可以）。</p>
+</li>
+<li>
+<p><code>public</code></p>
+<p>public 函数是合约接口的一部分，可以在内部或通过消息调用。</p>
+</li>
+<li>
+<p><code>internal</code></p>
+<p>这些函数和状态变量只能是内部访问（即从当前合约内部或从它派生的合约访问），不使用 <code>this</code> 调用。</p>
+</li>
+<li>
+<p><code>private</code></p>
+<p>private 函数和状态变量仅在当前定义它们的合约中使用，并且不能被派生合约使用。</p>
+</li>
+</ul>
+<h4 id="4-2-变量作用域-42----变量作用域42-变量作用域"><a href="#4-2-%E5%8F%98%E9%87%8F%E4%BD%9C%E7%94%A8%E5%9F%9F" title="4.2    变量作用域"></a>4.2 变量作用域</h4>
+<p>局部变量的作用域仅限于定义它们的函数，但是状态变量可以有三种作用域类型：<code>public</code> ，<code>internal</code> ，<code>private</code>。</p>
+<ul>
+<li>
+<p><code>public</code></p>
+<p>公共状态变量可以在内部访问，也可以通过消息访问。对于公共状态变量，将<strong>生成一个自动 getter 函数</strong>，例如：</p>
+</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">      pragma solidity ^0.4.0;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">      contract C {
+</span></span><span class="line"><span class="cl">          uint public data = 42;
+</span></span><span class="line"><span class="cl">      }
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">      contract Caller {
+</span></span><span class="line"><span class="cl">          C c = new C();
+</span></span><span class="line"><span class="cl">          function f() public {
+</span></span><span class="line"><span class="cl">              uint local = c.data();
+</span></span><span class="line"><span class="cl">          }
+</span></span><span class="line"><span class="cl">      }
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>
+<p><code>internal</code></p>
+<p>内部状态变量只能从当前合约或其派生合约内访问。</p>
+</li>
+<li>
+<p><code>private</code></p>
+<p>私有状态变量只能从当前合约内部访问，派生合约内不能访问。</p>
+</li>
+</ul>
+<p>可见性标识符的定义位置，对于状态变量来说是在类型后面，对于函数是在参数列表和返回关键字中间。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">    pragma solidity ^0.4.16;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    contract C {
+</span></span><span class="line"><span class="cl">        function f(uint a) private pure returns (uint b) { return a + 1; }
+</span></span><span class="line"><span class="cl">        function setData(uint a) internal { data = a; }
+</span></span><span class="line"><span class="cl">        uint public data;
+</span></span><span class="line"><span class="cl">    }
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="5-合约">5 合约</h3>
+<h4 id="51-抽象合约">5.1 抽象合约</h4>
+<p>约函数可以缺少实现，如下例所示（请注意函数声明头由 <code>;</code> 结尾）:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">    pragma solidity ^0.4.0;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    contract Feline {
+</span></span><span class="line"><span class="cl">        function utterance() public returns (bytes32);
+</span></span><span class="line"><span class="cl">    }
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>这些合约无法成功编译（即使它们除了未实现的函数还包含其他已经实现了的函数），但他们可以用作基类合约:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">    pragma solidity ^0.4.0;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    contract Feline {
+</span></span><span class="line"><span class="cl">        function utterance() public returns (bytes32);
+</span></span><span class="line"><span class="cl">    }
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    contract Cat is Feline {
+</span></span><span class="line"><span class="cl">        function utterance() public returns (bytes32) { return &#34;miaow&#34;; }
+</span></span><span class="line"><span class="cl">    }
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>如果合约继承自抽象合约，并且没有通过重写来实现所有未实现的函数，那么它本身就是抽象的。</p>
+<h4 id="52-接口">5.2 接口</h4>
+<p>接口类似于抽象合约，但是它们不能实现任何函数。还有进一步的限制：</p>
+<ol>
+<li>无法继承其他合约或接口。</li>
+<li>无法定义构造函数。</li>
+<li>无法定义变量。</li>
+<li>无法定义结构体。</li>
+<li>无法定义枚举。</li>
+</ol>
+<p>将来可能会解除这里的某些限制。</p>
+<p>接口基本上仅限于合约 ABI 可以表示的内容，并且 ABI 和接口之间的转换应该不会丢失任何信息。</p>
+<p>接口由它们自己的关键字表示：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">    pragma solidity ^0.4.11;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    interface Token {
+</span></span><span class="line"><span class="cl">        function transfer(address recipient, uint amount) public;
+</span></span><span class="line"><span class="cl">    }
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>就像继承其他合约一样，合约可以继承接口。</p>
+<h4 id="53-库">5.3 库</h4>
+<p>库类似于合约，但主要作用是代码重用。库中包含了可以被合约调用的函数。</p>
+<p>Solidity 中，对库的使用有一定的限制。以下是库的主要特征。</p>
+<ul>
+<li>如果库函数不修改状态，则可以直接调用它们。这意味着纯函数或视图函数只能从库外部调用。</li>
+<li>库不能被销毁，因为它被认为是无状态的。</li>
+<li>库不能有状态变量。</li>
+<li>库不能继承任何其他元素。</li>
+<li>库不能被继承。</li>
+</ul>
+<p>尝试下面的代码，来理解库是如何工作的。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">    pragma solidity ^0.5.0;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    library Search {
+</span></span><span class="line"><span class="cl">       function indexOf(uint[] storage self, uint value) public view returns (uint) {
+</span></span><span class="line"><span class="cl">          for (uint i = 0; i &lt; self.length; i++) if (self[i] == value) return i;
+</span></span><span class="line"><span class="cl">          return uint(-1);
+</span></span><span class="line"><span class="cl">       }
+</span></span><span class="line"><span class="cl">    }
+</span></span><span class="line"><span class="cl">    contract Test {
+</span></span><span class="line"><span class="cl">       uint[] data;
+</span></span><span class="line"><span class="cl">       constructor() public {
+</span></span><span class="line"><span class="cl">          data.push(1);
+</span></span><span class="line"><span class="cl">          data.push(2);
+</span></span><span class="line"><span class="cl">          data.push(3);
+</span></span><span class="line"><span class="cl">          data.push(4);
+</span></span><span class="line"><span class="cl">          data.push(5);
+</span></span><span class="line"><span class="cl">       }
+</span></span><span class="line"><span class="cl">       function isValuePresent() external view returns(uint){
+</span></span><span class="line"><span class="cl">          uint value = 4;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">          // 使用库函数搜索数组中是否存在值
+</span></span><span class="line"><span class="cl">          uint index = Search.indexOf(data, value);
+</span></span><span class="line"><span class="cl">          return index;
+</span></span><span class="line"><span class="cl">       }
+</span></span><span class="line"><span class="cl">    }
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>输出</strong></p>
+<pre><code>0: uint256: 3
+</code></pre>
+<p><strong>Using For</strong></p>
+<p><code>using A for B</code>指令，可用于将库 A 的函数附加到给定类型 B。这些函数将把调用者类型作为第一个参数(使用<code>self</code>标识)。</p>
+<p>尝试下面的代码，来理解<code>Using For</code>是怎么工作的。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">    pragma solidity ^0.5.0;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    library Search {
+</span></span><span class="line"><span class="cl">       function indexOf(uint[] storage self, uint value) public view returns (uint) {
+</span></span><span class="line"><span class="cl">          for (uint i = 0; i &lt; self.length; i++)if (self[i] == value) return i;
+</span></span><span class="line"><span class="cl">          return uint(-1);
+</span></span><span class="line"><span class="cl">       }
+</span></span><span class="line"><span class="cl">    }
+</span></span><span class="line"><span class="cl">    contract Test {
+</span></span><span class="line"><span class="cl">       using Search for uint[];
+</span></span><span class="line"><span class="cl">       uint[] data;
+</span></span><span class="line"><span class="cl">       constructor() public {
+</span></span><span class="line"><span class="cl">          data.push(1);
+</span></span><span class="line"><span class="cl">          data.push(2);
+</span></span><span class="line"><span class="cl">          data.push(3);
+</span></span><span class="line"><span class="cl">          data.push(4);
+</span></span><span class="line"><span class="cl">          data.push(5);
+</span></span><span class="line"><span class="cl">       }
+</span></span><span class="line"><span class="cl">       function isValuePresent() external view returns(uint){
+</span></span><span class="line"><span class="cl">          uint value = 4;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">          // data 表示库
+</span></span><span class="line"><span class="cl">          uint index = data.indexOf(value);
+</span></span><span class="line"><span class="cl">          return index;
+</span></span><span class="line"><span class="cl">       }
+</span></span><span class="line"><span class="cl">    }
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>输出</strong></p>
+<pre><code>0: uint256: 3
+</code></pre>
+<p>新增部分：</p>
+<ul>
+<li>状态变量可以声明为 <code>constant</code> 或 <code>immutable</code> . 在这两种情况下，在构建合约之后，变量都不能被修改。为 <code>constant</code> 变量时，该值必须在编译时固定，而对于 <code>immutable</code> ，仍可以在发布时分配。</li>
+</ul>
+<hr>
+<p>转载请注明来源</p>
+</section>
+
+  
+  
+  <footer class="mt-12 flex flex-wrap">
+     
+    <a
+      class="mr-1.5 mb-1.5 rounded-lg bg-black/[3%] px-5 py-2 no-underline dark:bg-white/[8%]"
+      href="http://blog.jobinleung.me/tags/solidity"
+      >solidity</a
+    >
+     
+    <a
+      class="mr-1.5 mb-1.5 rounded-lg bg-black/[3%] px-5 py-2 no-underline dark:bg-white/[8%]"
+      href="http://blog.jobinleung.me/tags/eth"
+      >eth</a
+    >
+     
+    <a
+      class="mr-1.5 mb-1.5 rounded-lg bg-black/[3%] px-5 py-2 no-underline dark:bg-white/[8%]"
+      href="http://blog.jobinleung.me/tags/evm"
+      >evm</a
+    >
+     
+    <a
+      class="mr-1.5 mb-1.5 rounded-lg bg-black/[3%] px-5 py-2 no-underline dark:bg-white/[8%]"
+      href="http://blog.jobinleung.me/tags/contract"
+      >contract</a
+    >
+    
+  </footer>
+  
+
+  
+  
+  
+  <nav class="mt-24 flex rounded-lg bg-black/[3%] text-lg dark:bg-white/[8%]">
+    
+    
+    <a
+      class="ml-auto flex w-1/2 items-center justify-end rounded-r-md p-6 pl-3 no-underline hover:bg-black/[2%]"
+      href="http://blog.jobinleung.me/post/how-to-use-rust-to-develop-wasm-library-/"
+      ><span>怎样使用rust开发wasm库</span><span class="ml-1.5">→</span></a
+    >
+    
+  </nav>
+  
+
+  
+  
+
+  
+  
+</article>
+
+
+    </main>
+
+    <footer
+  class="opaco mx-auto flex h-[5rem] max-w-3xl items-center px-8 text-[0.9em] opacity-60"
+>
+  <div class="mr-auto">
+    &copy; 2023
+    <a class="link" href="http://blog.jobinleung.me/">Leung</a>
+  </div>
+  <a class="link mx-6" href="https://gohugo.io/" rel="noopener" target="_blank"
+    >Powered by Hugo️️</a
+  >️
+  <a
+    class="link"
+    href="https://github.com/nanxiaobei/hugo-paper"
+    rel="noopener"
+    target="_blank"
+    >▷ Paper 6</a
+  >
+</footer>
+
+  </body>
+</html>

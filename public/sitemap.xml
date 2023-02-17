@@ -1,130 +1,130 @@
-<?xml-stylesheet type="text/xsl" href="http://blog.jobinleung.me/sitemap.xsl"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>http://blog.jobinleung.me/categories/</loc>
-    <lastmod>2023-01-13T17:52:24+08:00</lastmod>
+    <lastmod>2023-02-17T11:37:36+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
-  </url>
-  
-  <url>
+  </url><url>
+    <loc>http://blog.jobinleung.me/tags/contract/</loc>
+    <lastmod>2023-02-17T11:37:36+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>http://blog.jobinleung.me/tags/eth/</loc>
+    <lastmod>2023-02-17T11:37:36+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>http://blog.jobinleung.me/categories/eth/</loc>
+    <lastmod>2023-02-17T11:37:36+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>http://blog.jobinleung.me/tags/evm/</loc>
+    <lastmod>2023-02-17T11:37:36+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
     <loc>http://blog.jobinleung.me/</loc>
-    <lastmod>2023-01-13T17:52:24+08:00</lastmod>
+    <lastmod>2023-02-17T11:37:36+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
-  </url>
-  
-  <url>
+  </url><url>
+    <loc>http://blog.jobinleung.me/post/</loc>
+    <lastmod>2023-02-17T11:37:36+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>http://blog.jobinleung.me/tags/solidity/</loc>
+    <lastmod>2023-02-17T11:37:36+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>http://blog.jobinleung.me/categories/solidity/</loc>
+    <lastmod>2023-02-17T11:37:36+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>http://blog.jobinleung.me/post/summary-of-solidity-knowledge-points/</loc>
+    <lastmod>2023-02-17T11:37:36+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>http://blog.jobinleung.me/tags/</loc>
+    <lastmod>2023-02-17T11:37:36+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
     <loc>http://blog.jobinleung.me/tags/npm/</loc>
     <lastmod>2023-01-13T17:52:24+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>http://blog.jobinleung.me/post/</loc>
-    <lastmod>2023-01-13T17:52:24+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>http://blog.jobinleung.me/tags/react/</loc>
     <lastmod>2023-01-13T17:52:24+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>http://blog.jobinleung.me/tags/rust/</loc>
     <lastmod>2023-01-13T17:52:24+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>http://blog.jobinleung.me/tags/</loc>
-    <lastmod>2023-01-13T17:52:24+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>http://blog.jobinleung.me/tags/wasm/</loc>
     <lastmod>2023-01-13T17:52:24+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>http://blog.jobinleung.me/categories/wasm/</loc>
     <lastmod>2023-01-13T17:52:24+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>http://blog.jobinleung.me/tags/webassembly/</loc>
     <lastmod>2023-01-13T17:52:24+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>http://blog.jobinleung.me/post/how-to-use-rust-to-develop-wasm-library-/</loc>
     <lastmod>2023-01-13T17:52:24+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>http://blog.jobinleung.me/tags/metamask/</loc>
     <lastmod>2022-03-04T18:39:55+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>http://blog.jobinleung.me/tags/reactnative/</loc>
     <lastmod>2022-03-04T18:39:55+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>http://blog.jobinleung.me/tags/web3/</loc>
     <lastmod>2022-03-04T18:39:55+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>http://blog.jobinleung.me/categories/web3/</loc>
     <lastmod>2022-03-04T18:39:55+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>http://blog.jobinleung.me/post/mobile-app-connects-to-metamask-app-and-signs-via-deep-link-part2/</loc>
     <lastmod>2022-03-04T18:39:55+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>http://blog.jobinleung.me/post/mobile-app-connects-to-metamask-app-and-signs-via-deep-link/</loc>
     <lastmod>2022-03-03T15:51:20+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>http://blog.jobinleung.me/post/hello/</loc>
     <lastmod>2022-03-03T15:03:27+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
-  
 </urlset>
