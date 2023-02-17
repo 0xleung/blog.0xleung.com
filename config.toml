@@ -1,4 +1,4 @@
-baseURL = 'http://blog.jobinleung.me/'
+baseURL = 'http://blog.0xleung.com/'
 languageCode = "en"
 defaultContentLanguage = "en"                             # en / zh-cn / ... (This field determines which i18n file to use)
 title = "Leung"
@@ -37,7 +37,7 @@ copyright = ""            # default: author.name ↓        # 默认为下面配
   name = "Profile"
   weight = 15
   identifier = "profile"
-  url = "https://www.jobinleung.me/"
+  url = "https://www.0xleung.com/"
 [[menu.main]]
   name = "Archives"
   weight = 20
