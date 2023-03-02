@@ -1,5 +1,5 @@
 ---
-title: "About Signal"
+title: "聊一聊Signal"
 date: 2023-03-02T14:07:09+08:00
 draft: false
 tags: ["signal", "前端", "react", "Qwik", "Solid.js"]
